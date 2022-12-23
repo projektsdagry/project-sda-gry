@@ -8,6 +8,7 @@ import { RankingView } from "./views/ranking/ranking";
 
 function App() {
   return (
+    <ColorMode>
     <BrowserRouter>
     <AppBar />
     <Routes>
@@ -15,6 +16,7 @@ function App() {
       
     </Routes>
     </BrowserRouter>
+    </ColorMode>
   );
 }
 
