@@ -1,5 +1,9 @@
-const MainView: React.FC = () => {
+export const MainView: React.FC = () => {
   return <>MainView</>
 };
 
-export default MainView;
+
+
+
+
+
