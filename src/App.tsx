@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import HomeView from './views/home/home';
+import { MainView } from './views/home/home';
 import AppBar from './components/app-bar';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
     <AppBar />
     <Routes>
-      <Route path="/" element={<HomeView/>}/>
+      <Route path="/" element={<MainView/>}/>
       
     </Routes>
     </BrowserRouter>
