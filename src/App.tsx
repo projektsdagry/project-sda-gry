@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
     <AppBar />
     <Routes>
-      <Route path="/" element={<HomeView/>}/>
+      <Route path="/" element={<MainView/>}/>
       
     </Routes>
     </BrowserRouter>
