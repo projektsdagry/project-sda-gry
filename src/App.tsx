@@ -9,13 +9,13 @@ import { RankingView } from "./views/ranking/ranking";
 function App() {
   return (
     <ColorMode>
-      <BrowserRouter>
-        <AppBar />
-        <Routes>
-          <Route path="/" element={<MainView />} />
-          <Route path="/ranking" element={<RankingView />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+    <AppBar />
+    <Routes>
+      <Route path="/" element={<MainView/>}/>
+      
+    </Routes>
+    </BrowserRouter>
     </ColorMode>
   );
 }
