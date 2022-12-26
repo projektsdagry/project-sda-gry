@@ -13,6 +13,7 @@ function App() {
     <AppBar />
     <Routes>
       <Route path="/" element={<MainView/>}/>
+      <Route path="/ranking" element={<RankingView/>}/>
       
     </Routes>
     </BrowserRouter>
