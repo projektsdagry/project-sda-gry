@@ -5,6 +5,7 @@ import { MainView } from "./views/home/home";
 import AppBar from "./components/app-bar";
 import { ColorMode } from "./components/color-mode";
 import { RankingView } from "./views/ranking/ranking";
+import { NewsView } from "./views/news/news";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainView/>}/>
       <Route path="/ranking" element={<RankingView/>}/>
+      <Route path="/news" element={<NewsView/>} />
       
     </Routes>
     </BrowserRouter>
