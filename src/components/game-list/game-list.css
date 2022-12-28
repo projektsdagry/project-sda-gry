@@ -80,6 +80,7 @@
     padding: 0.5em 0.5em;
     -webkit-clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
     clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
+    color: white;
   }
   .game:hover .rank {
     top: 0px;

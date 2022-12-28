@@ -8,11 +8,11 @@ export const ColorModeContext = React.createContext({
 export const ColorMode: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const [mode, setMode] = React.useState<"dark" | "light">("dark");
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+        setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
       },
     }),
     []
