@@ -34,7 +34,7 @@ export const NewsView: React.FC = () => {
 
   return (
     <>
-      <div style={{ display: "flex", position: "sticky", top: 0 }}>
+      <div style={{ display: "flex", justifyContent:'center', position: "sticky", top: 0 }}>
         <Pagination
           color="primary"
           count={5}
