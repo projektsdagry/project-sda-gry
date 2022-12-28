@@ -1,0 +1,104 @@
+
+  
+  .btn {
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border: 0;
+    background: #0a84ff;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 12px;
+  }
+  
+  .game {
+    position: relative;
+    /* width: 17rem; */
+  }
+  
+  .front {
+    transition: 200ms;
+  }
+  .front > img {
+    border-radius: 12px;
+  }
+  .front .name {
+    margin: 0.25em 0em 2em 0;
+  }
+  
+  .back {
+    position: absolute;
+    top: 56%;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+  }
+  .back .game-info {
+    columns: 2;
+    column-rule: 2px solid rgba(255, 255, 255, 0.6);
+  }
+  .back .game-stat {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .back .game-stat span {
+    display: block;
+    font-size: 0.8rem;
+    margin: 5px 0 0 5px;
+  }
+  
+  .backgroundWrapper {
+    position: absolute;
+    z-index: -1;
+  }
+  
+  .game:hover .front {
+    transform: translateY(-80%) scale(1.6);
+  }
+  .game:hover .front .name {
+    -webkit-animation: gameName 1500ms forwards;
+    animation: gameName 150ms forwards;
+  }
+  
+  .game:hover .back {
+    opacity: 1;
+  }
+  
+  .rank {
+    position: absolute;
+    right: 15px;
+    font-weight: bold;
+    font-size: 1.12rem;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 0.5em 0.5em;
+    -webkit-clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
+    clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
+  }
+  .game:hover .rank {
+    top: 0px;
+    right: 0px;
+    opacity: 0;
+  }
+  
+  @keyframes gameName {
+    0% {
+      text-align: left;
+      opacity: 1;
+    }
+    20% {
+      text-align: left;
+      opacity: 0;
+    }
+    50% {
+      text-align: center;
+      opacity: 0;
+    }
+    100% {
+      text-align: center;
+      opacity: 10;
+    }
+  }
+  
