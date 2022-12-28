@@ -6,6 +6,7 @@ import AppBar from "./components/app-bar";
 import { ColorMode } from "./components/color-mode";
 import { RankingView } from "./views/ranking/ranking";
 import { NewsView } from "./views/news/news";
+import { RandomizerView } from "./views/randomizer/randomizer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" element={<MainView/>}/>
       <Route path="/ranking" element={<RankingView/>}/>
       <Route path="/news" element={<NewsView/>} />
+      <Route path="imbored" element={<RandomizerView/>}/>
       
     </Routes>
     </BrowserRouter>
