@@ -15,6 +15,10 @@
     /* width: 17rem; */
   }
   
+  .game-stat {
+    margin: 0;
+  }
+  
   .front {
     transition: 200ms;
   }
