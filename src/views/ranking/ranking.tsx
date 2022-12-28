@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Gamelist from "../../components/game-list";
+import Gamelist from "../../components/game-list/game-list";
 import { Game } from "../../types/game";
 import Pagination from "@mui/material/Pagination";
 
@@ -17,7 +17,7 @@ export const RankingView: React.FC = () => {
 
   return (
     <>
-      <Gamelist games={games} />
+      <Gamelist games={games} page={page} />
       <Pagination
         count={5}
         onChange={(e, page) => setPage(page)}
