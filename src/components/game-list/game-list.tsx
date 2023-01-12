@@ -8,11 +8,11 @@ import "./game-list.css"
 
 const Gamelist = (props: { games: Game[]; page: number }) => {
   return (
-    <Container maxWidth="xl">
+    <div className="gameCont">
       <Typography variant="h2" gutterBottom sx={{ padding: "40px 0" }}>
         Top 100 games
       </Typography>
-      <Grid container spacing={12} columns={{ xs: 1, md: 4 }}>
+      <Grid container spacing={12} columns={{ xs: 1, md: 5 }}>
         {props.games.map((game, index) => (
           <Grid item xs={1} md={1} key={game.id} sx={{}}>
             <div className="game">
@@ -32,13 +32,13 @@ const Gamelist = (props: { games: Game[]; page: number }) => {
                     <span>Metacritic</span>
                   </p>
                 </div>
-                <button className="btn">More info</button>
+                <button className="btn"><a>More info</a></button>
               </div>
             </div>
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </div>
   );
 };
 
