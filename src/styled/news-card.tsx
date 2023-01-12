@@ -6,10 +6,12 @@ let StyledNewsCard = {
         maxHeight: "100%",
         display: "inline-grid",
         padding: "4px",
-        margin:"12px"
+        margin:"12px",
+        
     },
     card: {
         maxHeight: '100%',
+        
     }
 
 }
