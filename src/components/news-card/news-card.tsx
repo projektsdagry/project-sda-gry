@@ -6,14 +6,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { New } from "../types/news";
-import StyledNewsCard from "../styled/news-card";
+import { New } from "../../types/news";
+import StyledNewsCard from "../../styled/news-card";
+
 
 
 const NewsCard = (props: { news: New[] }) => {
   return (
     <>
-    <p>Latest News</p>
+    <p style
+    ={{textAlign:"center", fontWeight:'bold', fontSize:'3rem', margin:0, padding:0, color:'Gray'}} >
+      Latest News</p>
       {props.news.map((news) => (
         <Card style={StyledNewsCard.container} sx={{ maxWidth: 345,}}>
           <CardMedia

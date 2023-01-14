@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import NewsCard from "../../components/news-card";
+import NewsCard from "../../components/news-card/news-card";
 import { New } from "../../types/news";
+import Pagination from "@mui/material/Pagination/Pagination";
 
 export const NewsView: React.FC = () => {
   const [news, SetNews] = useState([] as New[]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [newsPerPage, setNewsPerPage] = useState(8);
 
   useEffect(() => {
     const options = {
@@ -25,9 +28,27 @@ export const NewsView: React.FC = () => {
         console.error(error);
       });
   }, []);
+  const indexOfLastNews = currentPage * newsPerPage;
+  const indexOfFirstNews = indexOfLastNews - newsPerPage;
+  const currentNews = news.slice(indexOfFirstNews, indexOfLastNews);
+
   return (
     <>
-      <NewsCard news={news} />
+      <div style={{ display: "flex", justifyContent:'center', position: "sticky", top: 0 }}>
+        <Pagination
+          color="primary"
+          count={5}
+          onChange={(e, currentPage) => setCurrentPage(currentPage)}
+          sx={{
+            backgroundColor: "#AAADB6",
+            maxWidth: "300px",
+            borderRadius: "12px",
+          }}
+        />
+      </div>
+      <div>
+        <NewsCard news={currentNews} />
+      </div>
     </>
   );
 };
