@@ -1,6 +1,6 @@
 
   
-  .btn {
+  .MoreBtn {
     cursor: pointer;
     padding: 0.5em 1em;
     border: 0;
@@ -8,7 +8,9 @@
     color: #fff;
     font-weight: bold;
     border-radius: 12px;
+    text-decoration: none!important;
   }
+
   
   .game {
     position: relative;
