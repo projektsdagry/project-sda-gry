@@ -17,6 +17,7 @@ export interface Game {
   suggestions_count: number;
   updated: string;
   genres: string;
+  description: string;
   esrb_rating: {
     id: number;
     slug: string;

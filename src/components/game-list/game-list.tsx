@@ -32,10 +32,11 @@ const Gamelist = (props: { games: Game[]; page: number }) => {
                     <span>Metacritic</span>
                   </p>
                 </div>
-                <button className="btn"><a>More info</a></button>
+                <a href="http://localhost:3000/gameinfo"><button className="MoreBtn">More info</button></a>
               </div>
             </div>
           </Grid>
+          
         ))}
       </Grid>
     </div>
