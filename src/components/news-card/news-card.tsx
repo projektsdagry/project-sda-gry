@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,10 +12,8 @@ import StyledNewsCard from "../../styled/news-card";
 
 const NewsCard = (props: { news: News[] }) => {
   return (
-    <>
-    <p style
-    ={{textAlign:"center", fontWeight:'bold', fontSize:'3rem', margin:0, padding:0, color:'Gray'}} >
-      Latest News</p>
+    
+   <div>
       {props.news.map((news) => (
         <Card style={StyledNewsCard.container} sx={{ maxWidth: 345,}}>
           <CardMedia
@@ -40,7 +37,7 @@ const NewsCard = (props: { news: News[] }) => {
           </CardActions>
         </Card>
       ))}
-    </>
+    </div>
   );
 };
 

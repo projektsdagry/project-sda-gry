@@ -7,7 +7,7 @@ const MoreInfo = (props: { games: Game[] }) => {
       {props.games.map((game) => (
           <div>
             <h1>{game.name}</h1>
-            <img src={game.background_image}></img>
+            <img alt="" title="elo" src={game.background_image}></img>
             <p>{game.description}</p>
         </div>
       ))}
