@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import Gamelist from "../../components/game-list/game-list";
 import { Game } from "../../types/game";
 import Pagination from "@mui/material/Pagination";
+import { apiGames } from "../../services/api-rawg";
+
 
 export const RankingView: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [page, setPage] = useState<number>(1);
   useEffect(() => {
-    fetch(
-      `https://api.rawg.io/api/games?key=5a117cd0e4cf4ef3b7f080f243bc1017&page_size=20&page=${page}&ordering=-metacritic&metacritic=88,100&platforms=4&dates=2014-12-01,2022-12-31`
-    )
-      .then((response) => response.json())
-      .then((response) => setGames(response?.results || []))
-      .catch((err) => setGames([]));
-  }, [page]);
+    (async () => {
+      const gamesData = await apiGames.getRankingList(page);
+      if (gamesData) {
+        setGames(gamesData);
+      }
+    })();
+  }, []);
 
   return (
     <>
