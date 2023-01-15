@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
 import { Game } from "../../types/game";
 import Grid from "@mui/material/Grid";
 import "./randomizer.css";
+import { apiGames } from "../../services/api-rawg";
 
 export const RandomizerView: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selected, setSelected] = useState<Game[]>([]);
 
   useEffect(() => {
-    const page = Math.floor(Math.random() * (100) + 1)
-    fetch(
-      `https://api.rawg.io/api/games?page=${page}&page_size=50&key=47df0f4ea0b14eb3b3beaeba99f4e03d`
-    )
-      .then((response) => response.json())
-      .then((data) => setGames(data.results));
+    (async () => {
+      const page = Math.floor(Math.random() * (50) + 1)
+      const gamesData = await apiGames.getGames(page);
+      console.log(gamesData)
+      if (gamesData) {
+        setGames(gamesData);
+      }
+    })();
   }, []);
 
   const handleClick = (game: Game) => {
@@ -33,7 +35,7 @@ export const RandomizerView: React.FC = () => {
       {" "}
       <p className="boredP">Pick 5 games you like to get recommendations</p>
       <Grid container columns={5} padding={5} paddingTop={0} spacing={2}>
-        {games.map((game) => (
+      {games.length > 0 ? games.map((game) => (
           <Grid item xs={1} key={game.id}>
             <div
             style={{border:"3px solid transparent", position:"relative", overflow:"hidden"}}
@@ -53,7 +55,7 @@ export const RandomizerView: React.FC = () => {
               </div>
             </div>
           </Grid>
-        ))}
+        )) : <div>Loading...</div>}
       </Grid>
     </>
   );

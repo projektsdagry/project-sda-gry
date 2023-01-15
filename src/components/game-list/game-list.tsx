@@ -39,7 +39,7 @@ const Gamelist = (props: { games: Game[]; page: number }) => {
           
         ))}
       </Grid>
-    </div>
+    </div> 
   );
 };
 
