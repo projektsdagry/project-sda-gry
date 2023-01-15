@@ -8,6 +8,7 @@ return  (
 <div> {props.news.title}
      <img src={props.news.main_image} alt="" />
      {props.news.short_description}
+     {props.news.article_content}
 
 </div>
 
