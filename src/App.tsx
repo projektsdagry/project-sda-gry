@@ -4,7 +4,6 @@ import "./App.css";
 import AppBar from "./components/app-bar";
 import { ColorMode } from "./components/color-mode";
 import { RankingView } from "./views/ranking/ranking";
-import { NewsView } from "./views/news/news";
 import { RandomizerView } from "./views/randomizer/randomizer";
 import { GameInfo } from "./views/gameinfo/game-info";
 import { HomeView } from "./views/home/home";
@@ -17,7 +16,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeView />} />
           <Route path="/ranking" element={<RankingView />} />
-          <Route path="/news" element={<NewsView />} />
           <Route path="imbored" element={<RandomizerView />} />
           <Route path="gameinfo" element={<GameInfo />} />
         </Routes>
