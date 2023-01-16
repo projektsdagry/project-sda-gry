@@ -8,7 +8,7 @@ export const HomeView: React.FC = () => {
   const [news, setNews] = useState<News[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [newsPerPage, setNewsPerPage] = useState(2);
-  const [firstNews, ...nextNews] =news
+  const [firstNews, ...nextNews] = news;
 
   const indexOfLastNews = currentPage * newsPerPage;
   const indexOfFirstNews = indexOfLastNews - newsPerPage;
@@ -20,16 +20,7 @@ export const HomeView: React.FC = () => {
         setNews(newsData);
       }
     })();
-    // axios
-    //   .request(options)
-    //   .then(function (response) {
-    //     setNews(response?.data || []);
-    //   })
-    //   .catch(function (error) {
-    //     console.error(error);
-    //   });
   }, []);
-  
 
   return (
     <>
@@ -40,11 +31,9 @@ export const HomeView: React.FC = () => {
           position: "sticky",
           top: 0,
         }}
-      >
-        
-      </div>
+      ></div>
       <div>
-        {firstNews && <MainNews news={firstNews}/>}
+        {firstNews && <MainNews news={firstNews} />}
         {/* <NewsCard news={currentNews} /> */}
       </div>
     </>

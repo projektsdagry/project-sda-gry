@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { HomeView } from "./views/home/home";
 import AppBar from "./components/app-bar";
 import { ColorMode } from "./components/color-mode";
 import { RankingView } from "./views/ranking/ranking";
 import { RandomizerView } from "./views/randomizer/randomizer";
 import { GameInfo } from "./views/gameinfo/game-info";
 import GameRoster from "./views/gameroster/game-roster";
+import { HomeView } from "./views/home/home";
 
 function App() {
   return (

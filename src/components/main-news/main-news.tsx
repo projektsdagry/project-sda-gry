@@ -1,21 +1,16 @@
 import { News } from "../../types/news";
-import "./main-news.css"
 
-const MainNews = (props: {news: News}) =>{
+const MainNews = (props: { news: News }) => {
+  return (
+    <div>
+      {" "}
+      {props.news.title}
+      <img src={props.news.main_image} alt="" />
+      <div
+        dangerouslySetInnerHTML={{ __html: props.news.article_content }}
+      ></div>
+    </div>
+  );
+};
 
-return  (
-
-<div> {props.news.title}
-     <img src={props.news.main_image} alt="" />
-     {props.news.short_description}
-     {props.news.article_content}
-
-</div>
-
-
-)
-
-
-}
-
-export default MainNews
+export default MainNews;

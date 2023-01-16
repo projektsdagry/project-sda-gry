@@ -2,9 +2,9 @@ import { Game } from "../types/game";
 import { Genres } from "../types/gamegenres";
 
 const apiGamesDef = () => {
-  const getGames = async (page: number): Promise<Game[] | undefined> => {
+  const getGames = async (page: number, pageSize: number, genres?:string): Promise<Game[] | undefined> => {
     try {
-      const url = `https://api.rawg.io/api/games?page=${page}&page_size=50&key=47df0f4ea0b14eb3b3beaeba99f4e03d`;
+      const url = `https://api.rawg.io/api/games?page=${page}&page_size=${pageSize}&metacritic=70,100&key=47df0f4ea0b14eb3b3beaeba99f4e03d${genres ? "&genres=" + genres: ""}`;
       const response = await fetch(url);
       const game = await response.json();
       return game.results as Game[];
