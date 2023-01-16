@@ -4,7 +4,6 @@ import { Game } from "../../types/game";
 import Pagination from "@mui/material/Pagination";
 import { apiGames } from "../../services/api-rawg";
 
-
 export const RankingView: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [page, setPage] = useState<number>(1);
@@ -15,7 +14,7 @@ export const RankingView: React.FC = () => {
         setGames(gamesData);
       }
     })();
-  }, []);
+  }, [page]);
 
   return (
     <>
