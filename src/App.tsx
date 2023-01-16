@@ -7,7 +7,7 @@ import { ColorMode } from "./components/color-mode";
 import { RankingView } from "./views/ranking/ranking";
 import { RandomizerView } from "./views/randomizer/randomizer";
 import { GameInfo } from "./views/gameinfo/game-info";
-import GameList from "./views/gamelist/game-list";
+import GameRoster from "./views/gameroster/game-roster";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <AppBar />
         <Routes>
           <Route path="/" element={<HomeView />} />
-          <Route path="/gamelist" element={<GameList />} />
+          <Route path="/gamelist" element={<GameRoster />} />
           <Route path="/ranking" element={<RankingView />} />
           <Route path="imbored" element={<RandomizerView />} />
           <Route path="gameinfo" element={<GameInfo />} />
