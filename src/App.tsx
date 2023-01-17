@@ -8,6 +8,7 @@ import { RandomizerView } from "./views/randomizer/randomizer";
 import { GameInfo } from "./views/gameinfo/game-info";
 import GameRoster from "./views/gameroster/game-roster";
 import { HomeView } from "./views/home/home";
+import GamesByGenreList from "./views/games-by-genre-list/games-by-genre-list";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/ranking" element={<RankingView />} />
           <Route path="imbored" element={<RandomizerView />} />
           <Route path="gameinfo" element={<GameInfo />} />
+          <Route path="/gamesbygenrelist" element={<GamesByGenreList />} />
         </Routes>
       </BrowserRouter>
     </ColorMode>
