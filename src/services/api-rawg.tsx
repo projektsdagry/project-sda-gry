@@ -2,9 +2,15 @@ import { Game } from "../types/game";
 import { Genres, GenresList, GenresResponse } from "../types/gamegenres";
 
 const apiGamesDef = () => {
-  const getGames = async (page: number, pageSize: number, genres?:string): Promise<Game[] | undefined> => {
+  const getGames = async (
+    page: number,
+    pageSize: number,
+    genres?: string
+  ): Promise<Game[] | undefined> => {
     try {
-      const url = `https://api.rawg.io/api/games?page=${page}&page_size=${pageSize}&metacritic=70,100&key=47df0f4ea0b14eb3b3beaeba99f4e03d${genres ? "&genres=" + genres: ""}`;
+      const url = `https://api.rawg.io/api/games?page=${page}&page_size=${pageSize}&metacritic=70,100&key=47df0f4ea0b14eb3b3beaeba99f4e03d${
+        genres ? "&genres=" + genres : ""
+      }`;
       const response = await fetch(url);
       const game = await response.json();
       return game.results as Game[];
@@ -28,31 +34,30 @@ const apiGamesDef = () => {
       const url = `https://api.rawg.io/api/genres?key=5a117cd0e4cf4ef3b7f080f243bc1017&&`;
       const response = await fetch(url);
       const game = await response.json();
-      return game.results as Genres[]
+      return game.results as Genres[];
     } catch (error) {
       console.log();
     }
   };
 
-  const getGamesListByGenre = async (genre:string): Promise<GenresList[] |undefined> =>{
+  const getGamesListByGenre = async (
+    genre: string
+  ): Promise<GenresList[] | undefined> => {
     try {
-    const url = `https://api.rawg.io/api/games?genres=${genre}&key=5a117cd0e4cf4ef3b7f080f243bc1017&&`;
-    const response = await fetch (url);
-    const game = await response.json();
-    return game.results as GenresList[]
-  } catch (error) {
-    console.log();
-  }
-  }
+      const url = `https://api.rawg.io/api/games?genres=${genre}&key=5a117cd0e4cf4ef3b7f080f243bc1017&&`;
+      const response = await fetch(url);
+      const game = await response.json();
+      return game.results as GenresList[];
+    } catch (error) {
+      console.log();
+    }
+  };
   return {
     getGames,
     getRankingList,
     getGenreList,
-    getGamesListByGenre
+    getGamesListByGenre,
   };
 };
 
-
-
 export const apiGames = apiGamesDef();
-
