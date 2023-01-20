@@ -7,13 +7,12 @@ const MoreInfo = (props: { games: Game }) => {
   const game = props.games;
 
   return (
-    <Container maxWidth="xl" style={{ margin: "50px 0 0 300px" }}>
+    <Container style={{ justifyContent: "center", display: "flex", marginTop: "50px" }}>
       <Card
-        sx={{ maxWidth: 1200 }}
         style={{
           width: "100%",
           height: "100%",
-          justifyContent: "center",
+          alignItems: "center",
           display: "block",
         }}
       >
@@ -29,6 +28,7 @@ const MoreInfo = (props: { games: Game }) => {
               height: "100%",
               objectFit: "cover",
               display: "block",
+              borderRadius: "12px",
             }}
             src={game.background_image}
           ></img>
