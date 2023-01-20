@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import MoreInfo from "../../components/game-list/more-info";
 import { Game } from "../../types/game";
+import { apiGames } from "../../services/api-rawg";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+
 
 export const GameInfo: React.FC = () => {
-  const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<Game>();
+  const { moreinfoId } = useParams();
   useEffect(() => {
-    fetch(
-      `https://api.rawg.io/api/games/3497?key=5a117cd0e4cf4ef3b7f080f243bc1017`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setGames([response]);
-      })
-      .catch((err) => setGames([]));
-  }, []);
+    (async () => {
+      const gamesData = await apiGames.getGameInfo(moreinfoId || "");
+      if (gamesData) {
+        setGames(gamesData);
+      }
+    })();
+  }, [moreinfoId]);
 
-
+  if (!games) {
+    return <></>;
+  }
   return (
     <>
       <MoreInfo games={games} />

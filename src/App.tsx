@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import AppBar from "./components/app-bar";
-import { ColorMode } from "./components/color-mode";
+import AppBar from "./components/app-bar/app-bar";
+import { ColorMode } from "./components/app-bar/color-mode";
 import { RankingView } from "./views/ranking/ranking";
 import { RandomizerView } from "./views/randomizer/randomizer";
 import { GameInfo } from "./views/gameinfo/game-info";
@@ -18,9 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeView />} />
           <Route path="/gamelist" element={<GameRoster />} />
-          <Route path="/ranking" element={<RankingView />} />
+          <Route path="ranking" element={<RankingView />} />
+          <Route path="ranking/:moreinfoId" element={<GameInfo />} />
           <Route path="imbored" element={<RandomizerView />} />
-          <Route path="gameinfo" element={<GameInfo />} />
           <Route path="/gamesbygenrelist" element={<GamesByGenreList />} />
         </Routes>
       </BrowserRouter>

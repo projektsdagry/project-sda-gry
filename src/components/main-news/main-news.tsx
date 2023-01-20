@@ -25,7 +25,6 @@ export const MainNews = ({}) => {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         articles.push(doc.data());
-        console.log(doc.id, doc.data());
       });
 
       setArticle(articles);
@@ -42,7 +41,7 @@ export const MainNews = ({}) => {
       </Grid>
       {secArticles.map((article) => {
         return (
-          <Grid item xs={1} md={1}>
+          <Grid item xs={1} md={1} key={article.title}>
             <div>
               <img src={article.image}></img>
               <h1>{article.title}</h1>
