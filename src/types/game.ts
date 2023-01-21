@@ -5,6 +5,7 @@ export interface Game {
   released: string;
   tba: boolean;
   background_image: string;
+  developers: string;
   rating: number;
   rating_top: number;
   ratings: {};
@@ -16,15 +17,26 @@ export interface Game {
   playtime: number;
   suggestions_count: number;
   updated: string;
+  twitch_count: string;
   genres: {
     id: string;
+    name: string;
   }[];
+  platforms: [
+    {
+      platform: {
+        name: string;
+      }
+    }
+  ]
+    
   description: string;
   esrb_rating: {
     id: number;
     slug: string;
     name: string;
   };
+  stores: string;
 }
 
 export interface GetGamesListResponse {

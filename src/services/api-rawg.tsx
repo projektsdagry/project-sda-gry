@@ -1,6 +1,7 @@
 import { Game } from "../types/game";
 import { Genres, GenresList, GenresResponse } from "../types/gamegenres";
 
+
 const apiGamesDef = () => {
   const getGames = async (
     page: number,
@@ -21,7 +22,7 @@ const apiGamesDef = () => {
 
   const getRankingList = async (page: number): Promise<Game[] | undefined> => {
     try {
-      const url = `https://api.rawg.io/api/games?key=5a117cd0e4cf4ef3b7f080f243bc1017&page_size=20&page=${page}&ordering=-metacritic&metacritic=88,100&platforms=4&dates=2014-12-01,2022-12-31`;
+      const url = `https://api.rawg.io/api/games?key=5a117cd0e4cf4ef3b7f080f243bc1017&page_size=20&page=${page}&ordering=-metacritic&metacritic=88,100&platforms=4&dates=2010-12-01,2022-12-31`;
       const response = await fetch(url);
       const game = await response.json();
       return game.results as Game[];
@@ -29,6 +30,19 @@ const apiGamesDef = () => {
       console.log();
     }
   };
+
+  const getGameInfo = async (moreinfoId: string): Promise<Game | undefined> => {
+    try {
+      const url = `https://api.rawg.io/api/games/${moreinfoId}?key=5a117cd0e4cf4ef3b7f080f243bc1017`;
+      const response = await fetch(url);
+      const game = await response.json();
+      return game as Game;
+    } catch (error) {
+      console.log();
+    }
+  };
+
+
   const getGenreList = async (): Promise<Genres[] | undefined> => {
     try {
       const url = `https://api.rawg.io/api/genres?key=5a117cd0e4cf4ef3b7f080f243bc1017&&`;
@@ -57,6 +71,7 @@ const apiGamesDef = () => {
     getRankingList,
     getGenreList,
     getGamesListByGenre,
+    getGameInfo,
   };
 };
 

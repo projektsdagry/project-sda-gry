@@ -5,8 +5,10 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { height } from "@mui/system";
 import "./game-list.css"
+import { useNavigate } from "react-router-dom";
 
 const Gamelist = (props: { games: Game[]; page: number }) => {
+  const navigate = useNavigate();
   return (
     <div className="gameCont">
       <Typography variant="h2" gutterBottom sx={{ padding: "40px 0" }}>
@@ -32,7 +34,7 @@ const Gamelist = (props: { games: Game[]; page: number }) => {
                     <span>Metacritic</span>
                   </p>
                 </div>
-                <a href="http://localhost:3000/gameinfo"><button className="MoreBtn">More info</button></a>
+                <button onClick={() => navigate(`/ranking/${game.id}`)} className="MoreBtn">More info</button>
               </div>
             </div>
           </Grid>
