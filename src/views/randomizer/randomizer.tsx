@@ -8,6 +8,7 @@ export const RandomizerView: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selected, setSelected] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [canClick, setCanClick] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -22,6 +23,7 @@ export const RandomizerView: React.FC = () => {
   useEffect(() => {
     (async () => {
       if (selected.length === 5) {
+        setCanClick(false);
         setIsLoading(true);
         const page = Math.floor(Math.random() * 25 + 1);
         const genres = selected.map((game) =>
@@ -49,6 +51,7 @@ export const RandomizerView: React.FC = () => {
   }, [selected.length]);
 
   const handleClick = async (game: Game) => {
+    if (!canClick) return;
     if (selected.find((selectedGame) => selectedGame.id === game.id)) {
       setSelected((previous) =>
         previous.filter((selectedGame) => selectedGame.id !== game.id)
