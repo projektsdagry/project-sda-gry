@@ -68,7 +68,10 @@ export const RandomizerView: React.FC = () => {
   return (
     <>
       {" "}
-      <p className="boredP">Pick 5 games you like to get recommendations</p>
+      {canClick && (
+        <p className="boredP">Pick 5 games you like to get recommendations</p>
+      )}
+      {!canClick && <p className="boredP">Here are 5 games you should try!</p>}
       <Grid container columns={5} padding={5} paddingTop={0} spacing={2}>
         {games.length > 0 ? (
           games.map((game) => (
