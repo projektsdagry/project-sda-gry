@@ -22,7 +22,6 @@ function App() {
           <Route path="ranking" element={<RankingView />} />
           <Route path="ranking/:moreinfoId" element={<GameInfo />} />
           <Route path="imbored" element={<RandomizerView />} />
-          
         </Routes>
       </BrowserRouter>
     </ColorMode>
