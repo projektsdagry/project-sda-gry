@@ -17,11 +17,12 @@ function App() {
         <AppBar />
         <Routes>
           <Route path="/" element={<HomeView />} />
-          <Route path="/gamelist" element={<GameRoster />} />
+          <Route path="gamelist" element={<GameRoster />} />
+          <Route path="gamelist/:gameId" element={<GamesByGenreList />} />
           <Route path="ranking" element={<RankingView />} />
           <Route path="ranking/:moreinfoId" element={<GameInfo />} />
           <Route path="imbored" element={<RandomizerView />} />
-          <Route path="/gamesbygenrelist" element={<GamesByGenreList />} />
+          
         </Routes>
       </BrowserRouter>
     </ColorMode>
