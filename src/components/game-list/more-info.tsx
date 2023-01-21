@@ -76,7 +76,7 @@ const MoreInfo = (props: { games: Game; }) => {
               <h4 style={{ margin: "0px 10px 0px 0px " }}>Platforms:</h4>
               {game.platforms
                 .map((platform) => platform.platform.name)
-                .join(", ")}
+                .join("  , ")}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               <h2>About</h2>
