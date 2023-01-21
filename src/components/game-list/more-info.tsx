@@ -5,9 +5,10 @@ import { Card, CardContent, Container, Typography } from "@mui/material";
 
 const MoreInfo = (props: { games: Game }) => {
   const game = props.games;
-
   return (
-    <Container style={{ justifyContent: "center", display: "flex", marginTop: "50px" }}>
+    <Container
+      style={{ justifyContent: "center", display: "flex", marginTop: "50px" }}
+    >
       <Card
         style={{
           width: "100%",
@@ -34,27 +35,50 @@ const MoreInfo = (props: { games: Game }) => {
           ></img>
 
           <CardContent>
-            <Typography variant="body2" color="text.secondary">
-              <h2>About</h2>
-              <p dangerouslySetInnerHTML={{ __html: game.description }}></p>
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <h4>Release date</h4>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              component="div"
+              sx={{ display: "flex" }}
+            >
+              <h4 style={{ margin: "0px 10px 0px 0px " }}>Release date:</h4>
               {game.released}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <h4>Rating</h4>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              component="div"
+              sx={{ display: "flex" }}
+            >
+              <h4 style={{ margin: "0px 10px 0px 0px " }}>Rating:</h4>
               {game.rating}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <h4>Genres</h4>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              component="div"
+              sx={{ display: "flex" }}
+            >
+              <h4 style={{ margin: "0px 10px 0px 0px " }}>Genres:</h4>
               {game.genres.map((genre) => genre.name).join(", ")}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <h4>Platforms</h4>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              component="div"
+              sx={{ display: "flex" }}
+            >
+              <h4 style={{ margin: "0px 10px 0px 0px " }}>Platforms:</h4>
               {game.platforms
                 .map((platform) => platform.platform.name)
                 .join(", ")}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              <h2>About</h2>
+              <p
+                style={{ fontSize: "16px" }}
+                dangerouslySetInnerHTML={{ __html: game.description }}
+              ></p>
             </Typography>
           </CardContent>
         </Grid>
