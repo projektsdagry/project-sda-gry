@@ -16,6 +16,7 @@ export interface GenresResponse {
 
 
   export interface GenresList {
+    id:number;
     slug:string;
     name:string;
     playtime:number;
