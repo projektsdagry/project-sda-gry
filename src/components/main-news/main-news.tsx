@@ -1,31 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { firestore } from "../../services/api-firebase";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  doc,
-  QuerySnapshot,
-} from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import { Article } from "../../types/news";
 import Grid from "@mui/material/Grid";
 
 export const MainNews = ({}) => {
-  const messageRef = useRef();
-  const ref = collection(firestore, "articles");
   const [article, setArticle] = useState<Article[]>([]);
   const [mainArticle, ...secArticles] = article;
 
   useEffect(() => {
     (async () => {
       const q = query(collection(firestore, "articles"));
-      const articles: any = [];
+      // const articles: any = [];
 
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        articles.push(doc.data());
-      });
+      const articles: Article[] = querySnapshot.docs.map((doc) =>
+        doc.data()
+      ) as Article[];
+      // querySnapshot.forEach((doc) => {
+      //   articles.push(doc.data());
+      // });
 
       setArticle(articles);
     })();
