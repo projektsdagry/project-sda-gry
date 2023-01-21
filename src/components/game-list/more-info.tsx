@@ -54,7 +54,7 @@ const MoreInfo = (props: { games: Game }) => {
               <h4>Platforms</h4>
               {game.platforms
                 .map((platform) => platform.platform.name)
-                .join(", ")}
+                .join("  , ")}
             </Typography>
           </CardContent>
         </Grid>
