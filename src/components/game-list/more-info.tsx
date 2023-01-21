@@ -2,9 +2,13 @@ import { Game } from "../../types/game";
 import React from "react";
 import Grid from "@mui/material/Grid/Grid";
 import { Card, CardContent, Container, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const MoreInfo = (props: { games: Game }) => {
+
+const MoreInfo = (props: { games: Game; }) => {
   const game = props.games;
+  const navigate = useNavigate();
   return (
     <Container
       style={{ justifyContent: "center", display: "flex", marginTop: "50px" }}
@@ -18,6 +22,7 @@ const MoreInfo = (props: { games: Game }) => {
         }}
       >
         <Grid key={game.id}>
+        <ArrowBackIcon style={{cursor: "pointer"}} fontSize="medium" onClick={() => navigate(`/ranking`)}>More info</ArrowBackIcon>
           <h1 style={{ display: "flex", justifyContent: "center" }}>
             {game.name}
           </h1>
