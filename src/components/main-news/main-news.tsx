@@ -27,7 +27,9 @@ export const MainNews = ({}) => {
       <h1>LATEST NEWS</h1>
       <Card>
         <Grid container spacing={2} columns={{ xs: 1, md: 5 }}>
+
           <Grid item style={{padding: "0 20px 0 "}}>
+          
             <h1 style={{ display: "flex", justifyContent: "center" }}>
               {mainArticle && mainArticle.title}
             </h1>
@@ -43,6 +45,7 @@ export const MainNews = ({}) => {
                 display: "block",
                 borderRadius: "12px",
                 margin: "0 0 0 8px"
+
               }}
               src={mainArticle && mainArticle.image}
             ></img>
