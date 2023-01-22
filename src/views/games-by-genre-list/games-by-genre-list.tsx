@@ -26,6 +26,7 @@ const GamesByGenreList = () => {
 
     return (
         <div>
+            <h1></h1>
             <ListOfGames gamesList = {gamesList} />
         </div>
     )

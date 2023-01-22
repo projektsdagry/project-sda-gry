@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid/Grid";
 import { Card, CardContent, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import UndoIcon from '@mui/icons-material/Undo';
 
 
 const MoreInfo = (props: { games: Game; }) => {
@@ -22,7 +23,7 @@ const MoreInfo = (props: { games: Game; }) => {
         }}
       >
         <Grid key={game.id}>
-        <ArrowBackIcon style={{cursor: "pointer"}} fontSize="medium" onClick={() => navigate(`/ranking`)}>More info</ArrowBackIcon>
+        <UndoIcon style={{cursor: "pointer", margin: "5px 0 0 10px "}} fontSize="large" onClick={() => navigate(`/ranking`)}>More info</UndoIcon>
           <h1 style={{ display: "flex", justifyContent: "center" }}>
             {game.name}
           </h1>
@@ -76,7 +77,7 @@ const MoreInfo = (props: { games: Game; }) => {
               <h4 style={{ margin: "0px 10px 0px 0px " }}>Platforms:</h4>
               {game.platforms
                 .map((platform) => platform.platform.name)
-                .join(", ")}
+                .join("  , ")}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               <h2>About</h2>

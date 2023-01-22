@@ -23,4 +23,12 @@ export interface GenresResponse {
     released:string;
     tba:boolean;
     background_image:string;
+    platforms: [
+      {
+        platform: {
+          name: string;
+        }
+      }
+    ],
+    
   }

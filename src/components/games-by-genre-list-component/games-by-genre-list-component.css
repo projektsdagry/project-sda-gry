@@ -1,0 +1,30 @@
+.cont {
+    display: flex;
+    justify-content: center;
+    margin:10px;
+}
+
+
+
+
+
+.gameTable {
+    
+    table-layout: fixed;
+    width:75%;
+    text-align: center;
+   
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+    
+    
+    
+
+  
+}
+
+ table > tbody > td >img {
+    width: 100px;
+    height: 50px;
+    float: left;
+
+}
