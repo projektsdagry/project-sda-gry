@@ -9,6 +9,7 @@ import { GameInfo } from "./views/gameinfo/game-info";
 import GameRoster from "./views/gameroster/game-roster";
 import { HomeView } from "./views/home/home";
 import GamesByGenreList from "./views/games-by-genre-list/games-by-genre-list";
+import { GameCreator } from "./views/createagame/create-a-game";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="ranking" element={<RankingView />} />
           <Route path="ranking/:moreinfoId" element={<GameInfo />} />
           <Route path="imbored" element={<RandomizerView />} />
+          <Route path="game-creator" element={<GameCreator />} />
         </Routes>
       </BrowserRouter>
     </ColorMode>

@@ -18,7 +18,7 @@ import { useTheme } from "@mui/material";
 import { ColorModeContext } from "./color-mode";
 import { Link } from "react-router-dom";
 
-const pages = ["gamelist", "ranking", `imbored`];
+const pages = ["gamelist", "ranking", `imbored`, "game-creator"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
