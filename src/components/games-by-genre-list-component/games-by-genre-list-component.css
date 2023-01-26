@@ -28,3 +28,15 @@
     float: left;
 
 }
+
+
+.sorting-section {
+    display:flex;
+    justify-content: center;
+    gap:10px;
+}
+
+.sorting-section > select {
+    
+    border: none;
+}
