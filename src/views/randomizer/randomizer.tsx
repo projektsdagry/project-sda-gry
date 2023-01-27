@@ -3,12 +3,22 @@ import { Game } from "../../types/game";
 import Grid from "@mui/material/Grid";
 import "./randomizer.css";
 import { apiGames } from "../../services/api-rawg";
+import { Button } from "@mui/material";
+import { thanksMessages, searchAgainMessages } from "./randomizer-messages";
+import ReplayIcon from "@mui/icons-material/Replay";
 
 export const RandomizerView: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selected, setSelected] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [canClick, setCanClick] = useState(true);
+  const [isThanksButtonClicked, setIsThanksButtonClicked] = useState(false);
+  const [thanksMessage, setThanksMessage] = useState(thanksMessages[0]);
+  const [searchAgainMessage, setSearchAgainMessage] = useState(
+    searchAgainMessages[0]
+  );
+  const [isSearchAgainButtonClicked, setIsSearchAgainButtonClicked] =
+    useState(false);
 
   useEffect(() => {
     (async () => {
@@ -50,6 +60,19 @@ export const RandomizerView: React.FC = () => {
     })();
   }, [selected.length]);
 
+  useEffect(() => {
+    if (isThanksButtonClicked) {
+      let randomMessage = Math.floor(Math.random() * thanksMessages.length);
+      setThanksMessage(thanksMessages[randomMessage]);
+      const text = document.querySelector(".slide-in-text");
+      if (text) {
+        setTimeout(() => {
+          setIsThanksButtonClicked(false);
+        }, 2000);
+      }
+    }
+  }, [isThanksButtonClicked]);
+
   const handleClick = async (game: Game) => {
     if (!canClick) return;
     if (selected.find((selectedGame) => selectedGame.id === game.id)) {
@@ -65,13 +88,63 @@ export const RandomizerView: React.FC = () => {
     return null;
   }
 
+  const handleSearchAgain = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setIsSearchAgainButtonClicked(true);
+    let randomMessage = Math.floor(Math.random() * searchAgainMessages.length);
+    setSearchAgainMessage(searchAgainMessages[randomMessage]);
+    setTimeout(async () => {
+      setIsSearchAgainButtonClicked(false);
+      setIsLoading(true);
+      const page = Math.floor(Math.random() * 25 + 1);
+      const genres = selected.map((game) =>
+        game.genres.map((genre) => genre.id)
+      );
+      const concatGenres = new Set([
+        ...genres[0],
+        ...genres[1],
+        ...genres[2],
+        ...genres[3],
+        ...genres[4],
+      ]);
+      const finalGenres = Array.from(concatGenres);
+      const gamesData = await apiGames.getGames(
+        page,
+        5,
+        finalGenres.toString()
+      );
+      if (gamesData) {
+        setGames(gamesData);
+        setIsLoading(false);
+      }
+    }, 2000);
+  };
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       {" "}
       {canClick && (
         <p className="boredP">Pick 5 games you like to get recommendations</p>
       )}
-      {!canClick && <p className="boredP">Here are 5 games you should try!</p>}
+      {!canClick && (
+        <div className="boredDiv">
+          <ReplayIcon
+            style={{
+              cursor: "pointer",
+              margin: "64px 0 0 10px ",
+              fontSize: "50px",
+            }}
+            onClick={handleRefresh}
+          ></ReplayIcon>
+
+          <p>Here are 5 games you should try!</p>
+        </div>
+      )}
       <Grid container columns={5} padding={5} paddingTop={0} spacing={2}>
         {games.length > 0 ? (
           games.map((game) => (
@@ -83,7 +156,7 @@ export const RandomizerView: React.FC = () => {
                   overflow: "hidden",
                 }}
                 className={
-                  selected.find((selectedGame) => selectedGame.id == game.id)
+                  selected.find((selectedGame) => selectedGame.id === game.id)
                     ? "selected"
                     : ""
                 }
@@ -91,6 +164,7 @@ export const RandomizerView: React.FC = () => {
               >
                 <img
                   src={game.background_image}
+                  alt=""
                   style={{
                     width: "100%",
                     height: "200px",
@@ -116,6 +190,87 @@ export const RandomizerView: React.FC = () => {
           ))
         ) : (
           <div>Loading...</div>
+        )}{" "}
+        {!canClick && (
+          <div
+            style={{
+              display: "flex",
+              width: "98%",
+              marginLeft: "30px",
+              justifyContent: "space-between",
+              paddingTop: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                onClick={() => {
+                  setIsThanksButtonClicked(true);
+                }}
+                style={{
+                  backgroundColor: "#68bd89",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                  color: "whitesmoke",
+                  borderRadius: "10px",
+                }}
+                variant="contained"
+              >
+                COOL THANKS
+              </Button>
+              <div
+                className={`slide-in-text ${
+                  isThanksButtonClicked ? "show" : ""
+                }`}
+                style={{
+                  display: "inline",
+                  marginLeft: "15px",
+                  userSelect: "none",
+                }}
+              >
+                {thanksMessage}
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+              }}
+            >
+              <Button
+                onClick={handleSearchAgain}
+                style={{
+                  backgroundColor: "#c78cff",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                  color: "whitesmoke",
+                  borderRadius: "10px",
+                }}
+                variant="contained"
+              >
+                SHOW MORE
+              </Button>
+              <div
+                className={`slide-in-text ${
+                  isSearchAgainButtonClicked ? "show" : ""
+                }`}
+                style={{
+                  display: "inline-block",
+                  position: "absolute",
+                  right: "165px",
+                  marginRight: "15px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {searchAgainMessage}
+              </div>
+            </div>
+          </div>
         )}
       </Grid>
     </>
