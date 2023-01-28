@@ -1,12 +1,12 @@
 import { useAppSelector } from "../../app/hooks";
-import { selectGenreList } from "../../slices/gamelist-slice";
+import { selectGamesByGenreList } from "../../slices/gamelist-slice";
 import { GenresList } from "../../types/gamegenres";
 import "./games-by-genre-list-component.css";
 import { useState } from "react";
 
 const ListOfGames = () => {
   const [selectedPlatform, setSelectedPlatform] = useState("All");
-  let gameList = useAppSelector(selectGenreList);
+  let gameList = useAppSelector(selectGamesByGenreList);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPlatform(event.target.value);
