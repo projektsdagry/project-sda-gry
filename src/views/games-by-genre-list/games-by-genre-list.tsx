@@ -6,18 +6,18 @@ import { GenresList } from "../../types/gamegenres";
 
 const GamesByGenreList = () => {
     const [gamesList, setgamesList] = useState<GenresList[]>([]);
-    const {gameId} = useParams();
+    const {genreId} = useParams();
 
     useEffect(() =>{
         (async () =>{
-            const gamesData = await apiGames.getGamesListByGenre(gameId || '');
+            const gamesData = await apiGames.getGamesListByGenre(genreId || '');
             if (gamesData){
                 setgamesList(gamesData)
             }
         })()
         
 
-    },[gameId])
+    },[genreId])
 
         if(!gamesList){
             return <></>;
