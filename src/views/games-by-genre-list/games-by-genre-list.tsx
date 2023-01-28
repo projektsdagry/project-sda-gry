@@ -1,34 +1,29 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAppDispatch } from "../../app/hooks";
 import ListOfGames from "../../components/games-by-genre-list-component/games-by-genre-list-component";
 import { apiGames } from "../../services/api-rawg";
+import { getGameListAsync } from "../../slices/gamelist-slice";
 import { GenresList } from "../../types/gamegenres";
 
 const GamesByGenreList = () => {
-    const [gamesList, setgamesList] = useState<GenresList[]>([]);
-    const {genreId} = useParams();
+  const { gameId } = useParams();
+  const dispatch = useAppDispatch();
+  const getGamesList = async (): Promise<void> => {
+    if (gameId) {
+      dispatch(getGameListAsync(gameId));
+    }
+  };
 
-    useEffect(() =>{
-        (async () =>{
-            const gamesData = await apiGames.getGamesListByGenre(genreId || '');
-            if (gamesData){
-                setgamesList(gamesData)
-            }
-        })()
-        
+  useEffect(() => {
+    getGamesList();
+  }, []);
 
-    },[genreId])
-
-        if(!gamesList){
-            return <></>;
-        }
-
-
-    return (
-        <div>
-            <h1></h1>
-            <ListOfGames gamesList = {gamesList} />
-        </div>
-    )
-}
-export default GamesByGenreList
+  return (
+    <div>
+      <h1></h1>
+      <ListOfGames />
+    </div>
+  );
+};
+export default GamesByGenreList;

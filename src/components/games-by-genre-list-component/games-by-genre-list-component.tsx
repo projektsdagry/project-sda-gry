@@ -1,30 +1,29 @@
-import React from "react";
+import { useAppSelector } from "../../app/hooks";
+import { selectGenreList } from "../../slices/gamelist-slice";
 import { GenresList } from "../../types/gamegenres";
 import "./games-by-genre-list-component.css";
 import { useState } from "react";
-import UndoIcon from "@mui/icons-material/Undo";
-import { Navigate, useNavigate } from "react-router-dom";
-const ListOfGames = (props: { gamesList: GenresList[] }) => {
+
+const ListOfGames = () => {
   const [selectedPlatform, setSelectedPlatform] = useState("All");
-  const gameList = props.gamesList;
+  let gameList = useAppSelector(selectGenreList);
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPlatform(event.target.value);
   };
 
-  const navigate = useNavigate();
-
-  let filteredList = gameList;
   if (selectedPlatform !== "All") {
-    filteredList = gameList.filter((game) =>
+    gameList = gameList.filter((game) =>
       game.platforms.some(
         (platform) => platform.platform.name === selectedPlatform
       )
     );
   }
+
   return (
     <div>
       <div className="sorting-section">
-        <label>Filtr by platform:</label>
+        <label>Sort by platform:</label>
         <select value={selectedPlatform} onChange={handleChange}>
           <option value="All">All</option>
           <option value="PC">PC</option>
@@ -34,13 +33,6 @@ const ListOfGames = (props: { gamesList: GenresList[] }) => {
           <option value="Nintendo Switch">Nintendo Switch</option>
         </select>
       </div>
-      <UndoIcon
-        style={{ cursor: "pointer", margin: "5px 0 0 10px " }}
-        fontSize="large"
-        onClick={() => navigate(`/gamelist`)}
-      >
-        More info
-      </UndoIcon>
       <div className="cont">
         <table className="gameTable">
           <thead>
@@ -50,11 +42,11 @@ const ListOfGames = (props: { gamesList: GenresList[] }) => {
               <th>Platforms:</th>
             </tr>
           </thead>
-          {filteredList.map((gamesList) => (
+          {gameList.map((gamesList) => (
             <tbody key={gamesList.id}>
               <tr>
                 <td>
-                  <img src={gamesList.background_image}></img>{" "}
+                  <img src={gamesList.background_image} />{" "}
                   <p>{gamesList.name}</p>
                 </td>
                 <td>

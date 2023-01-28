@@ -16,9 +16,10 @@ const GamesByGenre = (props: { genres: Genres[] }) => {
         <Grid item xs={2} sm={4} md={4}>
           <div className="container">
             <img
+              alt="img"
               onClick={() => navigate(`/gamelist/${genres.id}`)}
               src={genres.image_background}
-            ></img>
+            />
             <div className="nameOfGenre">{genres.name}</div>
           </div>
         </Grid>
