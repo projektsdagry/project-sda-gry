@@ -39,6 +39,6 @@ export const gamesByGenreListSlice = createSlice({
 
 export const selectGamesByGenreList = (state: RootState) =>
 
-  state.gamesByGenreList.genresList;
+  state.gamesByGenreList.gamelistByGenres;
 export default gamesByGenreListSlice.reducer;
 
