@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../app/store";
-import { Genres, GenresList } from "../types/gamegenres";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../app/store";
+import { GenresList } from "../types/gamegenres";
 import { apiGames } from "../services/api-rawg";
-import { useParams } from "react-router-dom";
+
 
 interface GameListState {
   gamelistByGenres: GenresList[];
@@ -13,14 +13,18 @@ const initialState: GameListState = {
 };
 
 export const getGameListAsync = createAsyncThunk(
-  "gameslist/fetchGamesList",
+
+  "gamelist/fetchgamelist",
+
+
   async (gameId: string) => {
     return await apiGames.getGamesListByGenre(gameId || "");
   }
 );
 
-export const gamesByGenrelistSlice = createSlice({
-  name: "gameslist",
+
+export const gamesByGenreListSlice = createSlice({
+  name: "gamesbygenrelist",
   initialState,
   reducers: {
     filterByPlatform: () => {},
@@ -34,5 +38,7 @@ export const gamesByGenrelistSlice = createSlice({
 });
 
 export const selectGamesByGenreList = (state: RootState) =>
-  state.gamesByGenreList.gamelistByGenres;
-export default gamesByGenrelistSlice.reducer;
+
+  state.gamesByGenreList.genresList;
+export default gamesByGenreListSlice.reducer;
+

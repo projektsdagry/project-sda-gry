@@ -24,7 +24,7 @@ const ListOfGames = () => {
     <div>
       <div className="sorting-section">
         <label>Sort by platform:</label>
-        <select value={selectedPlatform} onChange={handleChange}>
+        <select title="select" value={selectedPlatform} onChange={handleChange}>
           <option value="All">All</option>
           <option value="PC">PC</option>
           <option value="macOS">macOS</option>
@@ -46,7 +46,7 @@ const ListOfGames = () => {
             <tbody key={gamesList.id}>
               <tr>
                 <td>
-                  <img src={gamesList.background_image} />{" "}
+                  <img alt="background_img" src={gamesList.background_image} />{" "}
                   <p>{gamesList.name}</p>
                 </td>
                 <td>
