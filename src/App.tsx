@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeView />} />
           <Route path="gamelist" element={<GameRoster />} />
-          <Route path="gamelist/:genreId" element={<GamesByGenreList />} />
+          <Route path="gamelist/:gameId" element={<GamesByGenreList />} />
           <Route path="ranking" element={<RankingView />} />
           <Route path="ranking/:moreinfoId" element={<GameInfo />} />
           <Route path="imbored" element={<RandomizerView />} />
