@@ -5,22 +5,22 @@ import { apiGames } from "../services/api-rawg";
 import { useParams } from "react-router-dom";
 
 interface GameListState {
-  genresList: GenresList[];
+  gamelistByGenres: GenresList[];
 }
 
 const initialState: GameListState = {
-  genresList: [],
+  gamelistByGenres: [],
 };
 
 export const getGameListAsync = createAsyncThunk(
-  "todos/fetchTodos",
+  "gameslist/fetchGamesList",
   async (gameId: string) => {
     return await apiGames.getGamesListByGenre(gameId || "");
   }
 );
 
-export const genreListSlice = createSlice({
-  name: "genrelist",
+export const gamesByGenrelistSlice = createSlice({
+  name: "gameslist",
   initialState,
   reducers: {
     filterByPlatform: () => {},
@@ -28,11 +28,11 @@ export const genreListSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getGameListAsync.fulfilled, (state, action) => {
-      state.genresList = action.payload || [];
+      state.gamelistByGenres = action.payload || [];
     });
   },
 });
 
-export const selectGenreList = (state: RootState) =>
-  state.gamesByGenreList.genresList;
-export default genreListSlice.reducer;
+export const selectGamesByGenreList = (state: RootState) =>
+  state.gamesByGenreList.gamelistByGenres;
+export default gamesByGenrelistSlice.reducer;
