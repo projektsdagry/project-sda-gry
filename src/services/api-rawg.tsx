@@ -1,7 +1,6 @@
 import { Game } from "../types/game";
 import { Genres, GenresList, GenresResponse } from "../types/gamegenres";
 
-
 const apiGamesDef = () => {
   const getGames = async (
     page: number,
@@ -15,9 +14,7 @@ const apiGamesDef = () => {
       const response = await fetch(url);
       const game = await response.json();
       return game.results as Game[];
-    } catch (error) {
-      console.log();
-    }
+    } catch (error) {}
   };
 
   const getRankingList = async (page: number): Promise<Game[] | undefined> => {
@@ -41,7 +38,6 @@ const apiGamesDef = () => {
       console.log();
     }
   };
-
 
   const getGenreList = async (): Promise<Genres[] | undefined> => {
     try {
@@ -67,7 +63,7 @@ const apiGamesDef = () => {
     }
   };
   return {
-    getGames,
+    storeMethods: { getGames },
     getRankingList,
     getGenreList,
     getGamesListByGenre,

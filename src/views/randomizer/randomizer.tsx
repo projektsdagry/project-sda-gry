@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Game } from "../../types/game";
 import Grid from "@mui/material/Grid";
 import "./randomizer.css";
-import { apiGames } from "../../services/api-rawg";
 import { Button } from "@mui/material";
 import { thanksMessages, searchAgainMessages } from "./randomizer-messages";
 import ReplayIcon from "@mui/icons-material/Replay";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { getGamesAsync, selectGames } from "../../slices/randomizer-slice";
 
 export const RandomizerView: React.FC = () => {
-  const [games, setGames] = useState<Game[]>([]);
+  const dispatch = useAppDispatch();
+  // const [setGames] = useState<Game[]>([]);
+  const games = useAppSelector(selectGames);
   const [selected, setSelected] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [canClick, setCanClick] = useState(true);
@@ -23,12 +26,22 @@ export const RandomizerView: React.FC = () => {
   useEffect(() => {
     (async () => {
       const page = Math.floor(Math.random() * 50 + 1);
-      const gamesData = await apiGames.getGames(page, 50);
-      if (gamesData) {
-        setGames(gamesData);
-      }
+      dispatch(getGamesAsync({ page, pageSize: 40 }));
     })();
   }, []);
+
+  const getGenresFromSelected = (selected: Game[]) => {
+    const genres = selected.map((game) => game.genres.map((genre) => genre.id));
+    const concatGenres = new Set([
+      ...genres[0],
+      ...genres[1],
+      ...genres[2],
+      ...genres[3],
+      ...genres[4],
+    ]);
+    const finalGenres = Array.from(concatGenres);
+    return finalGenres.toLocaleString();
+  };
 
   useEffect(() => {
     (async () => {
@@ -36,26 +49,14 @@ export const RandomizerView: React.FC = () => {
         setCanClick(false);
         setIsLoading(true);
         const page = Math.floor(Math.random() * 25 + 1);
-        const genres = selected.map((game) =>
-          game.genres.map((genre) => genre.id)
+        dispatch(
+          getGamesAsync({
+            page,
+            pageSize: 5,
+            genres: getGenresFromSelected(selected),
+          })
         );
-        const concatGenres = new Set([
-          ...genres[0],
-          ...genres[1],
-          ...genres[2],
-          ...genres[3],
-          ...genres[4],
-        ]);
-        const finalGenres = Array.from(concatGenres);
-        const gamesData = await apiGames.getGames(
-          page,
-          5,
-          finalGenres.toString()
-        );
-        if (gamesData) {
-          setGames(gamesData);
-          setIsLoading(false);
-        }
+        setIsLoading(false);
       }
     })();
   }, [selected.length]);
@@ -85,6 +86,7 @@ export const RandomizerView: React.FC = () => {
   };
 
   if (isLoading) {
+    //todo spinnerek is going to be here
     return null;
   }
 
@@ -98,26 +100,14 @@ export const RandomizerView: React.FC = () => {
       setIsSearchAgainButtonClicked(false);
       setIsLoading(true);
       const page = Math.floor(Math.random() * 25 + 1);
-      const genres = selected.map((game) =>
-        game.genres.map((genre) => genre.id)
+      dispatch(
+        getGamesAsync({
+          page,
+          pageSize: 5,
+          genres: getGenresFromSelected(selected),
+        })
       );
-      const concatGenres = new Set([
-        ...genres[0],
-        ...genres[1],
-        ...genres[2],
-        ...genres[3],
-        ...genres[4],
-      ]);
-      const finalGenres = Array.from(concatGenres);
-      const gamesData = await apiGames.getGames(
-        page,
-        5,
-        finalGenres.toString()
-      );
-      if (gamesData) {
-        setGames(gamesData);
-        setIsLoading(false);
-      }
+      setIsLoading(false);
     }, 2000);
   };
 
