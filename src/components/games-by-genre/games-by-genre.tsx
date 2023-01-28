@@ -1,10 +1,13 @@
-import { Grid, ListItem } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Genres } from "../../types/gamegenres";
+import { useAppSelector } from "../../app/hooks";
+import { selectGenreList } from "../../slices/genrelist-slice";
+
 import "./games-by-genre.css";
 
-const GamesByGenre = (props: { genres: Genres[] }) => {
+const GamesByGenre = () => {
   const navigate = useNavigate();
+  let genreList = useAppSelector(selectGenreList);
 
   return (
     <Grid
@@ -12,7 +15,7 @@ const GamesByGenre = (props: { genres: Genres[] }) => {
       spacing={{ xs: 2, md: 3 }}
       columns={{ xs: 4, sm: 8, md: 12 }}
     >
-      {props.genres.map((genres) => (
+      {genreList.map((genres) => (
         <Grid item xs={2} sm={4} md={4}>
           <div className="container">
             <img

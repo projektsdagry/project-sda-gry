@@ -1,12 +1,11 @@
 import { useAppSelector } from "../../app/hooks";
-import { selectGenreList } from "../../slices/gamelist-slice";
-import { GenresList } from "../../types/gamegenres";
+import { selectGamesByGenreList } from "../../slices/gamelist-slice";
 import "./games-by-genre-list-component.css";
 import { useState } from "react";
 
 const ListOfGames = () => {
   const [selectedPlatform, setSelectedPlatform] = useState("All");
-  let gameList = useAppSelector(selectGenreList);
+  let gameList = useAppSelector(selectGamesByGenreList);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPlatform(event.target.value);
@@ -24,7 +23,7 @@ const ListOfGames = () => {
     <div>
       <div className="sorting-section">
         <label>Sort by platform:</label>
-        <select value={selectedPlatform} onChange={handleChange}>
+        <select title="select" value={selectedPlatform} onChange={handleChange}>
           <option value="All">All</option>
           <option value="PC">PC</option>
           <option value="macOS">macOS</option>
@@ -46,7 +45,7 @@ const ListOfGames = () => {
             <tbody key={gamesList.id}>
               <tr>
                 <td>
-                  <img src={gamesList.background_image} />{" "}
+                  <img alt="background_img" src={gamesList.background_image} />{" "}
                   <p>{gamesList.name}</p>
                 </td>
                 <td>
