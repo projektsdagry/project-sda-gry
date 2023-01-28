@@ -1,14 +1,14 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-
+import randomizerReducer from "../slices/randomizer-slice";
 import gamesByGenreListReducer from "../slices/gamelist-slice";
 import genreListReducer from "../slices/genrelist-slice"
 
 export const store = configureStore({
   reducer: {
+    games: randomizerReducer,
     gamesByGenreList: gamesByGenreListReducer,
     genreList: genreListReducer,
-
-
+    
   },
 });
 
