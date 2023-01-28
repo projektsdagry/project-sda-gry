@@ -5,19 +5,23 @@ import { apiGames } from "../services/api-rawg";
 
 
 interface GameListState {
-  genresList: GenresList[];
+  gamelistByGenres: GenresList[];
 }
 
 const initialState: GameListState = {
-  genresList: [],
+  gamelistByGenres: [],
 };
 
 export const getGameListAsync = createAsyncThunk(
+
   "gamelist/fetchgamelist",
+
+
   async (gameId: string) => {
     return await apiGames.getGamesListByGenre(gameId || "");
   }
 );
+
 
 export const gamesByGenreListSlice = createSlice({
   name: "gamesbygenrelist",
@@ -28,11 +32,13 @@ export const gamesByGenreListSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getGameListAsync.fulfilled, (state, action) => {
-      state.genresList = action.payload || [];
+      state.gamelistByGenres = action.payload || [];
     });
   },
 });
 
 export const selectGamesByGenreList = (state: RootState) =>
+
   state.gamesByGenreList.genresList;
 export default gamesByGenreListSlice.reducer;
+

@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+
 import gamesByGenreListReducer from "../slices/gamelist-slice";
 import genreListReducer from "../slices/genrelist-slice"
 
@@ -6,6 +7,8 @@ export const store = configureStore({
   reducer: {
     gamesByGenreList: gamesByGenreListReducer,
     genreList: genreListReducer,
+
+
   },
 });
 
