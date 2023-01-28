@@ -4,6 +4,13 @@
     
 }
 
+.boredDiv {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+}
+
 .boredP {
     text-align: center;
     font-size: 50px;
@@ -15,3 +22,21 @@ h3 {
     pointer-events: none;
     user-select: none;
 }
+
+
+  .slide-in-text {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .slide-in-text.show {
+    opacity: 1;
+  }
+  
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
