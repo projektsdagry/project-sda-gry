@@ -1,6 +1,5 @@
 import { useAppSelector } from "../../app/hooks";
 import { selectGamesByGenreList } from "../../slices/gamelist-slice";
-import { GenresList } from "../../types/gamegenres";
 import "./games-by-genre-list-component.css";
 import { useState } from "react";
 

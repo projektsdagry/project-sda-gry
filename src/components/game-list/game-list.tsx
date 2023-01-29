@@ -1,10 +1,7 @@
-import React from "react";
 import { Game } from "../../types/game";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { height } from "@mui/system";
-import "./game-list.css"
+import "./game-list.css";
 import { useNavigate } from "react-router-dom";
 
 const Gamelist = (props: { games: Game[]; page: number }) => {
@@ -34,14 +31,18 @@ const Gamelist = (props: { games: Game[]; page: number }) => {
                     <span>Metacritic</span>
                   </p>
                 </div>
-                <button onClick={() => navigate(`/ranking/${game.id}`)} className="MoreBtn">More info</button>
+                <button
+                  onClick={() => navigate(`/ranking/${game.id}`)}
+                  className="MoreBtn"
+                >
+                  More info
+                </button>
               </div>
             </div>
           </Grid>
-          
         ))}
       </Grid>
-    </div> 
+    </div>
   );
 };
 

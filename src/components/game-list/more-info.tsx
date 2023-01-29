@@ -1,13 +1,10 @@
 import { Game } from "../../types/game";
-import React from "react";
 import Grid from "@mui/material/Grid/Grid";
 import { Card, CardContent, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import UndoIcon from '@mui/icons-material/Undo';
+import UndoIcon from "@mui/icons-material/Undo";
 
-
-const MoreInfo = (props: { games: Game; }) => {
+const MoreInfo = (props: { games: Game }) => {
   const game = props.games;
   const navigate = useNavigate();
   return (
@@ -23,7 +20,13 @@ const MoreInfo = (props: { games: Game; }) => {
         }}
       >
         <Grid key={game.id}>
-        <UndoIcon style={{cursor: "pointer", margin: "5px 0 0 10px "}} fontSize="large" onClick={() => navigate(`/ranking`)}>More info</UndoIcon>
+          <UndoIcon
+            style={{ cursor: "pointer", margin: "5px 0 0 10px " }}
+            fontSize="large"
+            onClick={() => navigate(`/ranking`)}
+          >
+            More info
+          </UndoIcon>
           <h1 style={{ display: "flex", justifyContent: "center" }}>
             {game.name}
           </h1>
