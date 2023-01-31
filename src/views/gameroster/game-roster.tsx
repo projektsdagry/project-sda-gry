@@ -1,34 +1,23 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react";
+import { useAppDispatch } from "../../app/hooks";
 import GamesByGenre from "../../components/games-by-genre/games-by-genre";
-import { apiGames } from "../../services/api-rawg";
-
-import { Genres, GenresResponse } from "../../types/gamegenres";
+import { getGenreListAsync } from "../../slices/genrelist-slice";
 
 const GameRoster = () => {
+  const dispatch = useAppDispatch();
+  const getGenresList = async (): Promise<void> => {
+    dispatch(getGenreListAsync());
+  };
 
-    const [genres, setGenres] = useState<Genres[]>([]);
+  useEffect(() => {
+    getGenresList();
+  }, []);
 
-   useEffect(()=>{
-    (async ()=>{
-        const gamesData = await apiGames.getGenreList();
-        if (gamesData){
-            setGenres(gamesData)
-        }
-    })()
-
-   },[]);
-
-   
-
-
-return (
+  return (
     <div>
-    <GamesByGenre genres={genres}/>
+      <GamesByGenre />
     </div>
-)
+  );
+};
 
-
-
-}
-
-export default GameRoster
+export default GameRoster;

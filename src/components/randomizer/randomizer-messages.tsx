@@ -7,7 +7,7 @@ const thanksMessages = [
   "We appreciate your feedback 💬",
   "We appreciate your input, thanks for taking the time to share 🙏",
   "You rock, thanks for the feedback 🤘",
-  "We are here for you 🥹",
+  "Here for you, always 🥹",
   "Glad we could help 😊",
   "Thanks for being a part of our community, we appreciate you 🌟",
   "Thanks for being part of our journey, we appreciate you 🚀",

@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { firestore } from "../../services/api-firebase";
+import { firestore } from "./../../index";
 import { collection, query, getDocs } from "firebase/firestore";
 import { Article } from "../../types/news";
 import Grid from "@mui/material/Grid";
