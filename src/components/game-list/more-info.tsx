@@ -11,7 +11,7 @@ const MoreInfo = (props: { games: Game }) => {
   const navigate = useNavigate();
   return (
     <Container
-      style={{ justifyContent: "center", display: "flex", marginTop: "50px" }}
+      style={{ justifyContent: "center", display: "flex", marginTop: "50px", marginBottom: "50px"}}
     >
       <Card
         style={{
