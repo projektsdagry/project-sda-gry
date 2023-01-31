@@ -16,9 +16,7 @@ figure.newsCard {
   border-radius: 12px;
 }
 figure.newsCard * {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -70,7 +68,6 @@ figure.newsCard p {
 
 figure.newsCard:hover img,
 figure.newsCard.hover img {
-  -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 
@@ -88,10 +85,8 @@ figure.newsCard.hover img {
   border-radius: 0.5rem;
   flex: 1;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .news-card__image {
@@ -99,11 +94,11 @@ figure.newsCard.hover img {
   height: 100%;
   object-fit: cover;
   transition: transform 3s ease;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: relative;
   z-index: -1;
 }
+
 .news-card__text-wrapper {
   position: absolute;
   bottom: 0rem;
