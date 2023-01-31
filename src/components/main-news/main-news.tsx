@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { firestore } from "../../services/api-firebase";
 import { collection, query, getDocs } from "firebase/firestore";
@@ -5,9 +6,13 @@ import { Article } from "../../types/news";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
 import { Card, CardContent } from "@mui/material";
+import forgbg from "../../assets/forgbg.mp4";
+import "../main-news/main-news.css";
+
 export const MainNews = ({}) => {
   const [article, setArticle] = useState<Article[]>([]);
   const [mainArticle, ...secArticles] = article;
+
   useEffect(() => {
     (async () => {
       const q = query(collection(firestore, "articles"));
@@ -23,63 +28,72 @@ export const MainNews = ({}) => {
     })();
   }, []);
   return (
-    <Container maxWidth={"xl"}>
-      <h1>LATEST NEWS</h1>
-      <Card>
-        <Grid container spacing={2} columns={{ xs: 1, md: 5 }}>
-
-          <Grid item style={{padding: "0 20px 0 "}}>
-          
-            <h1 style={{ display: "flex", justifyContent: "center" }}>
+    <div className="newsCont">
+      <h1 style={{marginLeft: "45px"}}>LATEST NEWS</h1>
+      <div className="content-wrapper">
+        <div className="news-card">
+          <img
+            alt="."
+            title=""
+            src={mainArticle && mainArticle.image}
+            className="news-card__image"
+          ></img>
+          <div className="news-card__text-wrapper">
+            <h2 className="news-card__title">
               {mainArticle && mainArticle.title}
-            </h1>
-            <p style={{ display: "flex", justifyContent: "center" }}>
+            </h2>
+            <div className="news-card__description">
               {mainArticle && mainArticle.description}
-            </p>
-            <img
-              alt=""
-              title="elo"
-              style={{
-                width: "100%",
-                height: "500px",
-                display: "block",
-                borderRadius: "12px",
-                margin: "0 0 0 8px"
-
-              }}
-              src={mainArticle && mainArticle.image}
-            ></img>
-            <p style={{ fontSize: "15px", margin: "20px" }}>
+            </div>
+            <div className="news-card__details-wrapper">
               {mainArticle && mainArticle.content}
-            </p>
-          </Grid>
-          {secArticles.map((article) => {
-            return (
-              <Grid item xs={1} md={1} key={article.title}>
-                <CardContent>
-                  <img
-                    alt=""
-                    title="elo"
-                    style={{
-                      width: "100%",
-                      height: "220px",
-                      objectFit: "cover",
-                      display: "block",
-                      borderRadius: "12px",
-                    }}
-                    src={article.image}
-                  ></img>
-                  <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-                    {article.title}
-                  </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="content-wrapper">
+        <div className="news-card">
+          <img
+            alt="."
+            title=""
+            src={mainArticle && mainArticle.image}
+            className="news-card__image"
+          ></img>
+          <div className="news-card__text-wrapper">
+            <h2 className="news-card__title">
+              {mainArticle && mainArticle.title}
+            </h2>
+            <div className="news-card__description">
+              {mainArticle && mainArticle.description}
+            </div>
+            <div className="news-card__details-wrapper">
+              {mainArticle && mainArticle.content}
+            </div>
+          </div>
+        </div>
+      </div>
+      <Grid container spacing={0} columns={10} >
+        {secArticles.map((article) => {
+          return (
+            <Grid item xs={10} md={5} lg={2} key={article.title}>
+              <figure className="newsCard">
+                <div className="image">
+                  <img src={article.image} alt="" />
+                </div>
+                <figcaption>
+                  <div className="date">
+                    <span className="day">31</span>
+                    <span className="month">Jan</span>
+                  </div>
+                  <h3>{article.title}</h3>
                   <p>{article.description}</p>
-                </CardContent>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Card>
-    </Container>
+                </figcaption>
+              </figure>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </div>
   );
 };
 export default MainNews;
