@@ -51,10 +51,11 @@ const apiGamesDef = () => {
   };
 
   const getGamesListByGenre = async (
-    genre: string
+    genre: string,
+    order: string
   ): Promise<GenresList[] | undefined> => {
     try {
-      const url = `https://api.rawg.io/api/games?genres=${genre}&ordering=popularity&page_size=40&key=5a117cd0e4cf4ef3b7f080f243bc1017`;
+      const url = `https://api.rawg.io/api/games?genres=${genre}&ordering=${order}&page_size=100&key=5a117cd0e4cf4ef3b7f080f243bc1017`;
       const response = await fetch(url);
       const game = await response.json();
       return game.results as GenresList[];

@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
   margin: 10px;
+ 
 }
 
 .gameTable {
   table-layout: fixed;
   width: 75%;
   text-align: center;
-
+  border-radius: 12px;
   background-image: linear-gradient(
     rgba(255, 255, 255, 0.05),
     rgba(255, 255, 255, 0.05)
@@ -19,6 +20,11 @@ table > tbody > tr > td > img {
   width: 100px;
   height: 50px;
   float: left;
+  border-radius: 10px;
+}
+table > tbody > tr > td {
+  border-bottom: 1px solid black;
+  padding: 10px;
 }
 
 .sorting-section {
@@ -26,25 +32,7 @@ table > tbody > tr > td > img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background-color: linear-gradient(
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.05)
-  );
-  width: 50%;
 }
 
-.sorting-section > select {
-  background-color: transparent;
-  border: none;
-  color: white;
-}
-.sorting-section > select > option {
-  background-color: black;
-}
-.sorting-section > select > option:checked {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: black;
-}
+
+

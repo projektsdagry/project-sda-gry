@@ -10,6 +10,7 @@
     height: 100%;
     object-fit:cover;
     opacity:70%;
+    border-radius: 10px;
 }
 .container .nameOfGenre {
     position: absolute;
