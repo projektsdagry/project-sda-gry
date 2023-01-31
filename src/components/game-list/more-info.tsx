@@ -2,7 +2,9 @@ import { Game } from "../../types/game";
 import Grid from "@mui/material/Grid/Grid";
 import { Card, CardContent, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import UndoIcon from "@mui/icons-material/Undo";
+import { positions } from "@mui/system";
 
 const MoreInfo = (props: { games: Game }) => {
   const game = props.games;
@@ -20,16 +22,25 @@ const MoreInfo = (props: { games: Game }) => {
         }}
       >
         <Grid key={game.id}>
-          <UndoIcon
-            style={{ cursor: "pointer", margin: "5px 0 0 10px " }}
-            fontSize="large"
-            onClick={() => navigate(`/ranking`)}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              position: "relative",
+            }}
           >
-            More info
-          </UndoIcon>
-          <h1 style={{ display: "flex", justifyContent: "center" }}>
-            {game.name}
-          </h1>
+            <UndoIcon
+              style={{
+                cursor: "pointer",
+                position: "absolute",
+                top: "25px",
+                left: "16px",
+              }}
+              fontSize="large"
+              onClick={() => navigate(`/ranking`)}
+            ></UndoIcon>
+            <h1>{game.name}</h1>
+          </div>
           <img
             alt=""
             title="elo"
@@ -82,13 +93,12 @@ const MoreInfo = (props: { games: Game }) => {
                 .map((platform) => platform.platform.name)
                 .join("  , ")}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <h2>About</h2>
-              <p
-                style={{ fontSize: "16px" }}
-                dangerouslySetInnerHTML={{ __html: game.description }}
-              ></p>
-            </Typography>
+
+            <h2>About</h2>
+            <p
+              style={{ fontSize: "16px" }}
+              dangerouslySetInnerHTML={{ __html: game.description }}
+            ></p>
           </CardContent>
         </Grid>
       </Card>
