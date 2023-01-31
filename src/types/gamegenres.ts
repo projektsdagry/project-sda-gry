@@ -30,5 +30,6 @@ export interface GenresResponse {
         }
       }
     ],
+    metacritic:number
     
   }

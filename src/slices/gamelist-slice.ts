@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ActionCreatorWithoutPayload, createAsyncThunk, createSlice, PayloadAction, PayloadActionCreator } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 import { GenresList } from "../types/gamegenres";
 import { apiGames } from "../services/api-rawg";
@@ -6,19 +6,26 @@ import { apiGames } from "../services/api-rawg";
 
 interface GameListState {
   gamelistByGenres: GenresList[];
+  order:string;
 }
 
 const initialState: GameListState = {
   gamelistByGenres: [],
+  order: 'popularity',
 };
+
+export interface getGamesByGenreParams {
+  gameId:string;
+  order:string;
+}
 
 export const getGameListAsync = createAsyncThunk(
 
   "gamelist/fetchgamelist",
 
 
-  async (gameId: string) => {
-    return await apiGames.getGamesListByGenre(gameId || "");
+  async ({gameId,order}:getGamesByGenreParams) => {
+    return await apiGames.getGamesListByGenre(gameId || "", order);
   }
 );
 
@@ -27,7 +34,10 @@ export const gamesByGenreListSlice = createSlice({
   name: "gamesbygenrelist",
   initialState,
   reducers: {
-    filterByPlatform: () => {},
+    changeOrder: (state, action:PayloadAction<string>) => {
+      state.order = action.payload;
+      
+    },
   },
 
   extraReducers: (builder) => {
@@ -40,5 +50,10 @@ export const gamesByGenreListSlice = createSlice({
 export const selectGamesByGenreList = (state: RootState) =>
 
   state.gamesByGenreList.gamelistByGenres;
-export default gamesByGenreListSlice.reducer;
 
+
+
+  
+export const selectOrder = (state:RootState) => state.gamesByGenreList.order;
+export const { changeOrder } = gamesByGenreListSlice.actions;
+export default gamesByGenreListSlice.reducer;
