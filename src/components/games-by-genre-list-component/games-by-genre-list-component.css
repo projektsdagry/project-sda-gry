@@ -28,10 +28,12 @@ table > tbody > tr > td {
 }
 
 .sorting-section {
-  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+  justify-content:center;
+  gap:50px;
+
 }
 
 
