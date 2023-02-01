@@ -24,11 +24,11 @@ export const GameCreator: React.FC = () => {
       <div
         style={{
           display: "flex",
-          alignItems: "center",
           justifyContent: "center",
+          minHeight: "100vh"
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box>
           <h2>1. What do you want your character to look like</h2>
           <FormControl sx={{ width: "100ch", marginTop: 0 }}>
             <OutlinedInput

@@ -9,6 +9,7 @@ import GameRoster from "./views/gameroster/game-roster";
 import { HomeView } from "./views/home/home";
 import GamesByGenreList from "./views/games-by-genre-list/games-by-genre-list";
 import { GameCreator } from "./views/createagame/create-a-game";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="imbored" element={<RandomizerView />} />
           <Route path="game-creator" element={<GameCreator />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ColorMode>
   );

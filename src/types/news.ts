@@ -3,4 +3,5 @@ export type Article = {
   content: string;
   description: string;
   image: string;
+  id: number;
 };
