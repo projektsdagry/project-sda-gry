@@ -15,7 +15,7 @@ const initialState: GameListState = {
 };
 
 export interface getGamesByGenreParams {
-  gameId:string;
+  genreId:string;
   order:string;
 }
 
@@ -24,8 +24,8 @@ export const getGameListAsync = createAsyncThunk(
   "gamelist/fetchgamelist",
 
 
-  async ({gameId,order}:getGamesByGenreParams) => {
-    return await apiGames.getGamesListByGenre(gameId || "", order);
+  async ({genreId,order}:getGamesByGenreParams) => {
+    return await apiGames.getGamesListByGenre(genreId || "", order);
   }
 );
 

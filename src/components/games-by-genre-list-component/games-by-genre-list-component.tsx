@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   changeOrder,
@@ -9,23 +9,43 @@ import {
 import "./games-by-genre-list-component.css";
 import { useState } from "react";
 import {
+  Box,
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
   SelectChangeEvent,
+  Typography,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import UndoIcon from "@mui/icons-material/Undo";
+import { styledModal } from "../../styled/games-by-genre-list/modal-styled";
+import { apiGames } from "../../services/api-rawg";
+import { Game } from "../../types/game";
 
 const ListOfGames: React.FC = () => {
   const [selectedPlatform, setSelectedPlatform] = useState("All");
-  const dispatch = useAppDispatch();
-  const order = useAppSelector(selectOrder);
-  const { gameId } = useParams();
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
   let gameList = useAppSelector(selectGamesByGenreList);
+  const order = useAppSelector(selectOrder);
+  const { genreId } = useParams();
+  // Modal states
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
+  // gameinfo
+  const [gameId, setGameId] = useState("");
+  const [gameInfo, setGameInfo] = useState<Game>();
+  useEffect(() => {
+    (async () => {
+      const gamesData = await apiGames.getGameInfo(gameId || "");
+      if (gamesData) {
+        setGameInfo(gamesData);
+      }
+    })();
+  }, [gameId]);
 
   // Sort by platform
   const handleChange = (event: SelectChangeEvent) => {
@@ -43,8 +63,8 @@ const ListOfGames: React.FC = () => {
   //Sort by realesed date, metacritic and popularity
   const handleSortChange = async (e: SelectChangeEvent): Promise<void> => {
     dispatch(changeOrder(e.target.value));
-    if (gameId) {
-      dispatch(getGameListAsync({ gameId, order: e.target.value }));
+    if (genreId) {
+      dispatch(getGameListAsync({ genreId, order: e.target.value }));
     }
   };
 
@@ -88,6 +108,7 @@ const ListOfGames: React.FC = () => {
         <table className="gameTable">
           <thead>
             <tr>
+              <th></th>
               <th>Name:</th>
               <th>Released at:</th>
               <th>Metacritic score</th>
@@ -96,9 +117,19 @@ const ListOfGames: React.FC = () => {
           </thead>
           <tbody>
             {gameList.map((gamesList) => (
-              <tr className="table-row" key={gamesList.id}>
+              <tr
+                className="table-row"
+                key={gamesList.id}
+                onClick={() => {
+                  setGameId(gamesList.id.toString());
+                  setOpen(true);
+                }}
+              >
                 <td>
-                  <img alt="background_img" src={gamesList.background_image} />{" "}
+                <img alt="background_img" src={gamesList.background_image} /> {" "}
+                </td>
+                <td>
+                
                   <p>{gamesList.name}</p>
                 </td>
                 <td>
@@ -110,13 +141,36 @@ const ListOfGames: React.FC = () => {
                 <td>
                   {gamesList.platforms
                     .map((platforms) => platforms.platform.name)
-                    .join(",")}
+                    .join(", ")}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {gameInfo && (
+        <div>
+          {" "}
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={styledModal}>
+              <img style={{objectFit:'contain'}} src={gameInfo?.background_image} />
+              <p style={{fontSize:'20px', fontWeight:'bolder', textAlign:'center'  }}>{gameInfo?.name}</p>
+              <p dangerouslySetInnerHTML={{__html:gameInfo?.description}}></p>
+                
+             
+              
+                
+              
+            </Box>
+          </Modal>
+        </div>
+      )}
     </div>
   );
 };
