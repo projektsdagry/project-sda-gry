@@ -159,7 +159,7 @@ const ListOfGames: React.FC = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={styledModal}>
-              <img style={{objectFit:'contain'}} src={gameInfo?.background_image} />
+              <img title="game-img" style={{objectFit:'contain'}} src={gameInfo?.background_image} />
               <p style={{fontSize:'20px', fontWeight:'bolder', textAlign:'center'  }}>{gameInfo?.name}</p>
               <p dangerouslySetInnerHTML={{__html:gameInfo?.description}}></p>
                 
