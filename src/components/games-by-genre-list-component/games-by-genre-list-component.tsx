@@ -10,14 +10,12 @@ import "./games-by-genre-list-component.css";
 import { useState } from "react";
 import {
   Box,
-  Button,
   FormControl,
   InputLabel,
   MenuItem,
   Modal,
   Select,
   SelectChangeEvent,
-  Typography,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import UndoIcon from "@mui/icons-material/Undo";
@@ -36,12 +34,12 @@ const ListOfGames: React.FC = () => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   // gameinfo
-  const [gameId, setGameId] = useState("");
+  const [gameId, setGameId] = useState<string | undefined>("");
   const [gameInfo, setGameInfo] = useState<Game>();
   useEffect(() => {
     (async () => {
-      const gamesData = await apiGames.getGameInfo(gameId || "");
-      if (gamesData) {
+      if (gameId) {
+        const gamesData = await apiGames.getGameInfo(gameId || "");
         setGameInfo(gamesData);
       }
     })();
@@ -126,10 +124,9 @@ const ListOfGames: React.FC = () => {
                 }}
               >
                 <td>
-                <img alt="background_img" src={gamesList.background_image} /> {" "}
+                  <img alt="background_img" src={gamesList.background_image} />{" "}
                 </td>
                 <td>
-                
                   <p>{gamesList.name}</p>
                 </td>
                 <td>
@@ -159,14 +156,45 @@ const ListOfGames: React.FC = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={styledModal}>
-              <img title="game-img" style={{objectFit:'contain'}} src={gameInfo?.background_image} />
-              <p style={{fontSize:'20px', fontWeight:'bolder', textAlign:'center'  }}>{gameInfo?.name}</p>
-              <p dangerouslySetInnerHTML={{__html:gameInfo?.description}}></p>
-                
-             
-              
-                
-              
+              <div>
+                <img
+                alt="game-img"
+                  title="game-img"
+                  style={{ objectFit: "contain" }}
+                  src={gameInfo?.background_image}
+                />
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "bolder",
+                    textAlign: "center",
+                  }}
+                >
+                  {gameInfo?.name}
+                </p>
+                <div
+                  style={{
+                    margin: "0",
+                    textAlign: "center",
+                    fontWeight: "revert",
+                  }}
+                >
+                  <p>{gameInfo.released}</p>
+                </div>
+              </div>
+              <div>
+                <span style={{ fontWeight: "bolder" }}> Stores: </span>
+                {gameInfo.stores.map((stores) => stores.store.name).join(" , ")}
+              </div>
+
+              <div style={{}}>
+                <p
+                  style={{ marginTop: "0px" }}
+                  dangerouslySetInnerHTML={{ __html: gameInfo?.description }}
+                ></p>
+              </div>
             </Box>
           </Modal>
         </div>

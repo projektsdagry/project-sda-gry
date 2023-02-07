@@ -11,4 +11,5 @@ export const styledModal = {
     boxShadow: 24,
     p: 4,
     overflow:'auto',
+    margin:0,
   };
