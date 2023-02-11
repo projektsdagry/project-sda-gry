@@ -12,12 +12,11 @@ import { wrap } from "module";
 import logo from "./../../assets/logo.png";
 
 export const MainNews = ({}) => {
-  const [article, setArticle] = useState<Article[]>([]);
-  const [mainArticle, ...setArticles] = article;
+  const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     (async () => {
-      const q = query(collection(firestore, "articles"), limit(11));
+      const q = query(collection(firestore, "articles"), limit(12));
       // const articles: any = [];
       const querySnapshot = await getDocs(q);
       const articles: Article[] = querySnapshot.docs.map((doc) =>
@@ -26,7 +25,7 @@ export const MainNews = ({}) => {
       // querySnapshot.forEach((doc) => {
       //   articles.push(doc.data());
       // });
-      setArticle(articles);
+      setArticles(articles);
     })();
   }, []);
   return (
@@ -43,8 +42,8 @@ export const MainNews = ({}) => {
           <div style={{ width: "66%" }}>
             <p
               style={{
-                fontWeight: "bold",
-                fontSize: "35px",
+                fontWeight: "300",
+                fontSize: "33px",
                 margin: "0 0 40px 100px ",
               }}
             >
@@ -75,25 +74,25 @@ export const MainNews = ({}) => {
           </div>
         </div>
         <h1 style={{ marginLeft: "45px" }}>LATEST NEWS</h1>
-        {setArticles.slice(0, 2).map((article) => {
+        {articles.slice(0, 2).map((article) => {
           return (
             <div className="content-wrapper">
               <div className="news-card">
                 <img
                   alt="."
                   title=""
-                  src={mainArticle && mainArticle.image}
+                  src={article.image}
                   className="news-card__image"
                 ></img>
                 <div className="news-card__text-wrapper">
                   <h2 className="news-card__title">
-                    {mainArticle && mainArticle.title}
+                    {article.title}
                   </h2>
                   <div className="news-card__description">
-                    {mainArticle && mainArticle.description}
+                    {article.description}
                   </div>
                   <div className="news-card__details-wrapper">
-                    {mainArticle && mainArticle.content}
+                    {article.content}
                   </div>
                 </div>
               </div>
@@ -101,7 +100,7 @@ export const MainNews = ({}) => {
           );
         })}
         <Grid container spacing={0} columns={10}>
-          {setArticles.map((article) => {
+          {articles.slice(2).map((article) => {
             return (
               <Grid item xs={10} md={5} lg={2} key={article.title}>
                 <figure className="newsCard">
@@ -110,8 +109,8 @@ export const MainNews = ({}) => {
                   </div>
                   <figcaption>
                     <div className="date">
-                      <span className="day">31</span>
-                      <span className="month">Jan</span>
+                      <span className="day">11</span>
+                      <span className="month">FEB</span>
                     </div>
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
