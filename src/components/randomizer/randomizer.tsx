@@ -115,7 +115,7 @@ export const Randomizer: React.FC = () => {
   };
 
   return (
-    <>
+    <div style={{minHeight: "100vh"}}>
       {" "}
       {canClick && (
         <p className="boredP">Pick 5 games you like to get recommendations</p>
@@ -134,10 +134,10 @@ export const Randomizer: React.FC = () => {
           <p>Here are 5 games you should try!</p>
         </div>
       )}
-      <Grid container columns={5} padding={5} paddingTop={0} spacing={2}>
+      <Grid container columns={10} padding={5} paddingTop={0} spacing={2}>
         {games.length > 0 ? (
           games.map((game) => (
-            <Grid item xs={1} key={game.id}>
+            <Grid item xs={10} md={5} lg={2} key={game.id}>
               <div
                 style={{
                   border: "3px solid transparent",
@@ -262,6 +262,6 @@ export const Randomizer: React.FC = () => {
           </div>
         )}
       </Grid>
-    </>
+    </div>
   );
 };

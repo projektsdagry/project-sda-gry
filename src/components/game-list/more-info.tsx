@@ -11,7 +11,13 @@ const MoreInfo = (props: { games: Game }) => {
   const navigate = useNavigate();
   return (
     <Container
-      style={{ justifyContent: "center", display: "flex", marginTop: "50px", marginBottom: "50px"}}
+      style={{
+        justifyContent: "center",
+        display: "flex",
+        marginTop: "50px",
+        marginBottom: "50px",
+        minHeight: "calc(100vh - 150px)"
+      }}
     >
       <Card
         style={{
@@ -19,6 +25,7 @@ const MoreInfo = (props: { games: Game }) => {
           height: "100%",
           alignItems: "center",
           display: "block",
+          margin: "0",
         }}
       >
         <Grid key={game.id}>
@@ -27,6 +34,7 @@ const MoreInfo = (props: { games: Game }) => {
               display: "flex",
               justifyContent: "center",
               position: "relative",
+              
             }}
           >
             <UndoIcon

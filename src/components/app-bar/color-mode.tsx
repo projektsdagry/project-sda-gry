@@ -18,7 +18,7 @@ export const ColorMode: React.FC<{ children: React.ReactNode }> = ({
     []
   );
 
-  const theme = React.useMemo(
+ const theme = React.useMemo(
     () =>
       createTheme({
         palette: {
