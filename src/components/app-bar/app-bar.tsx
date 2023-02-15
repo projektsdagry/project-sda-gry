@@ -67,7 +67,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            Better Steam
+            Steemlet
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -140,7 +140,7 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-          <IconButton
+          {/* <IconButton
             sx={{ ml: 1 }}
             onClick={colorMode.toggleColorMode}
             color="inherit"
@@ -150,7 +150,7 @@ function ResponsiveAppBar() {
             ) : (
               <Brightness4Icon />
             )}
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </Container>
     </AppBar>
