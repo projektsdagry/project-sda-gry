@@ -10,7 +10,7 @@ const Box = styled.footer`
   bottom: 0;
   width: 100%;
   min-height: 100%;
-  margin-top: auto;  
+  margin-top: 100px;
 `;
 
 const Sign = styled.p`
