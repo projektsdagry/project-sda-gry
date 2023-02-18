@@ -40,7 +40,7 @@ const ListOfGames: React.FC = () => {
 
 
   return (
-    <div>
+    <div style={{minHeight: '100vh'}}>
       <div className="sorting-section">
        
         <FormControl sx={{minWidth:'100px'}}>

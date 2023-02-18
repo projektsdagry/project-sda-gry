@@ -105,7 +105,7 @@ export const MainNews = ({}) => {
             />
           </div>
         </div>
-        <section id="sectionUs">
+        <section id="sectionUs" style={{paddingTop: '50px'}} >
           <div
             style={{
               minHeight: "100vh",
@@ -164,7 +164,7 @@ export const MainNews = ({}) => {
             </div>
           </div>
         </section>
-        <section id="sectionNews">
+        <section id="sectionNews" style={{paddingTop: '50px'}}>
           <h1 style={{ margin: "0 0 0 45px" }}>LATEST NEWS</h1>
           {articles.slice(0, 2).map((article) => {
             return (
