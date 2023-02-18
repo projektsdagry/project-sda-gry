@@ -10,7 +10,6 @@ import sheep from "./../../assets/sheep.png";
 import hubs from "./../../assets/hubs.png";
 import raccoon from "./../../assets/raccoon.png";
 import Button from "@mui/material/Button";
-import { MouseEvent } from "react";
 
 export const MainNews = ({}) => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -29,22 +28,17 @@ export const MainNews = ({}) => {
       setArticles(articles);
     })();
   }, []);
-  const handleMeetBtn = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleScrollToSection = (
+    event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
+    id: string
+  ) => {
     event.preventDefault();
-    const id = "sectionUs";
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const handleNewsBtn = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    const id = "sectionNews";
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+
   return (
     <>
       <div className="newsCont">
@@ -74,7 +68,7 @@ export const MainNews = ({}) => {
             </p>
             <Button
               href="#sectionNews"
-              onClick={handleNewsBtn}
+              onClick={(event) => handleScrollToSection(event, "sectionNews")}
               variant="contained"
               size="large"
               style={{
@@ -89,7 +83,7 @@ export const MainNews = ({}) => {
             </Button>
             <Button
               href="#sectionUs"
-              onClick={handleMeetBtn}
+              onClick={(event) => handleScrollToSection(event, "sectionUs")}
               variant="contained"
               size="large"
               style={{
@@ -111,7 +105,7 @@ export const MainNews = ({}) => {
             />
           </div>
         </div>
-        <section id="sectionUs">
+        <section id="sectionUs" style={{paddingTop: '50px'}} >
           <div
             style={{
               minHeight: "100vh",
@@ -126,7 +120,7 @@ export const MainNews = ({}) => {
               }}
             >
               Designed by players for players!
-              <br /> 
+              <br />
             </p>
             <div
               style={{
@@ -170,7 +164,7 @@ export const MainNews = ({}) => {
             </div>
           </div>
         </section>
-        <section id="sectionNews">
+        <section id="sectionNews" style={{paddingTop: '50px'}}>
           <h1 style={{ margin: "0 0 0 45px" }}>LATEST NEWS</h1>
           {articles.slice(0, 2).map((article) => {
             return (
