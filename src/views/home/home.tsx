@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AboutUs } from "../../components/about-us-section/about-us-section";
 import MainNews from "../../components/main-news/main-news";
 import { HomePage } from "../../homepage-content/homepage-content";

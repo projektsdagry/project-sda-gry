@@ -1,4 +1,4 @@
-import { ActionCreatorWithoutPayload, createAsyncThunk, createSlice, PayloadAction, PayloadActionCreator } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 import { GenresList } from "../types/gamegenres";
 import { apiGames } from "../services/api-rawg";

@@ -1,17 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { firestore } from "./../../index";
-import { collection, query, getDocs, limit, orderBy } from "firebase/firestore";
+import { collection, query, getDocs, limit } from "firebase/firestore";
 import { Article } from "../../types/news";
 import Grid from "@mui/material/Grid";
 import "../main-news/main-news.css";
-import logo from "./../../assets/logo2.png";
-import sheep from "./../../assets/sheep.png";
-import hubs from "./../../assets/hubs.png";
-import raccoon from "./../../assets/raccoon.png";
-import Button from "@mui/material/Button";
 
-export const MainNews = ({}) => {
+
+export const MainNews = () => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
@@ -28,16 +24,7 @@ export const MainNews = ({}) => {
       setArticles(articles);
     })();
   }, []);
-  const handleScrollToSection = (
-    event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
-    id: string
-  ) => {
-    event.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  
 
   return (
     <>
@@ -47,7 +34,7 @@ export const MainNews = ({}) => {
           <h1 style={{ margin: "0 0 0 45px" }}>LATEST NEWS</h1>
           {articles.slice(0, 2).map((article) => {
             return (
-              <div className="content-wrapper">
+              <div className="content-wrapper" key={article.id}>
                 <div className="news-card">
                   <img
                     alt="."
