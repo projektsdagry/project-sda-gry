@@ -15,14 +15,8 @@ export const AboutUs = () => {
         direction="row"
         wrap="wrap"
       >
-        <Grid item xs={1} sm={12}>
-          <Typography
-            justifyContent="center"
-            alignItems="center"
-            display="flex"
-            variant="h2"
-            sx={{ fontWeight: "bold" }}
-          >
+        <Grid item xs={12} sm={12}>
+          <Typography variant="h3" style={{ fontWeight: "bold" }}>
             Designed by players for players!
           </Typography>
         </Grid>
