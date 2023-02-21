@@ -1,4 +1,9 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import AppBar from "./components/app-bar/app-bar";
 import { ColorMode } from "./components/app-bar/color-mode";
@@ -10,10 +15,20 @@ import { HomeView } from "./views/home/home";
 import GamesByGenreList from "./views/games-by-genre-list/games-by-genre-list";
 import { Footer } from "./components/footer/footer";
 
+function FooterInLocation() {
+  const location = useLocation();
+
+  if (location.pathname.includes("/ranking/")) {
+    return null;
+  }
+
+  return <Footer />;
+}
+
 function App() {
   return (
     <ColorMode>
-      <BrowserRouter>
+      <Router>
         <AppBar />
         <Routes>
           <Route path="/" element={<HomeView />} />
@@ -23,8 +38,8 @@ function App() {
           <Route path="ranking/:moreinfoId" element={<GameInfo />} />
           <Route path="imbored" element={<RandomizerView />} />
         </Routes>
-        <Footer />
-      </BrowserRouter>
+        <FooterInLocation />
+      </Router>
     </ColorMode>
   );
 }

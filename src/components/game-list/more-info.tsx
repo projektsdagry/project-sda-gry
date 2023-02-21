@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid/Grid";
 import { Card, CardContent, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import UndoIcon from "@mui/icons-material/Undo";
+import { Footer } from "../footer/footer";
 
 const MoreInfo = (props: { games: Game }) => {
   const game = props.games;
@@ -102,6 +103,7 @@ const MoreInfo = (props: { games: Game }) => {
           </Grid>
         </Card>
       </Container>
+      <Footer />
     </div>
   );
 };
