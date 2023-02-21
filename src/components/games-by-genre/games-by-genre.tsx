@@ -17,7 +17,7 @@ const GamesByGenre = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {genreList.map((genres) => (
-          <Grid item xs={2} sm={4} md={4}>
+          <Grid item xs={2} sm={4} md={4} key={genres.id}>
             <div className="container">
               <img
                 alt="img"

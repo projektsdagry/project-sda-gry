@@ -36,7 +36,20 @@ export interface Game {
     slug: string;
     name: string;
   };
-  stores: string;
+  stores: [
+    {
+      id:number;
+      url:string;
+      store: {
+        id:number
+        name:string;
+        slug:string;
+        domain:string;
+        games_count:number;
+        image_background:string;
+      }
+    }
+  ]
 }
 
 export interface GetGamesListResponse {

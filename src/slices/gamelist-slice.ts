@@ -1,4 +1,4 @@
-import { ActionCreatorWithoutPayload, createAsyncThunk, createSlice, PayloadAction, PayloadActionCreator } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 import { GenresList } from "../types/gamegenres";
 import { apiGames } from "../services/api-rawg";
@@ -15,7 +15,7 @@ const initialState: GameListState = {
 };
 
 export interface getGamesByGenreParams {
-  gameId:string;
+  genreId:string;
   order:string;
 }
 
@@ -24,8 +24,8 @@ export const getGameListAsync = createAsyncThunk(
   "gamelist/fetchgamelist",
 
 
-  async ({gameId,order}:getGamesByGenreParams) => {
-    return await apiGames.getGamesListByGenre(gameId || "", order);
+  async ({genreId,order}:getGamesByGenreParams) => {
+    return await apiGames.getGamesListByGenre(genreId || "", order);
   }
 );
 
