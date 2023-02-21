@@ -1,15 +1,12 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { firestore } from "./../../index";
 import { collection, query, getDocs, limit } from "firebase/firestore";
-import { Article } from "../../types/news";
+import { Article, months } from "../../types/news";
 import Grid from "@mui/material/Grid";
 import "../main-news/main-news.css";
 
-
 export const MainNews = () => {
   const [articles, setArticles] = useState<Article[]>([]);
-
   useEffect(() => {
     (async () => {
       const q = query(collection(firestore, "articles"), limit(12));
@@ -24,15 +21,17 @@ export const MainNews = () => {
       setArticles(articles);
     })();
   }, []);
-  
+
+  const sortedArticles = articles.sort((a, b) => {
+    return b.createdAt.toMillis() - a.createdAt.toMillis();
+  });
 
   return (
     <>
       <div className="newsCont">
-       
-        <section id="sectionNews" style={{paddingTop: '50px'}}>
+        <section id="sectionNews" style={{ paddingTop: "50px" }}>
           <h1 style={{ margin: "0 0 0 45px" }}>LATEST NEWS</h1>
-          {articles.slice(0, 2).map((article) => {
+          {sortedArticles.slice(0, 2).map((article) => {
             return (
               <div className="content-wrapper" key={article.id}>
                 <div className="news-card">
@@ -57,7 +56,7 @@ export const MainNews = () => {
           })}
         </section>
         <Grid container spacing={0} columns={10}>
-          {articles.slice(2).map((article) => {
+          {sortedArticles.slice(2).map((article) => {
             return (
               <Grid item xs={10} md={5} lg={2} key={article.title}>
                 <figure className="newsCard">
@@ -66,8 +65,12 @@ export const MainNews = () => {
                   </div>
                   <figcaption>
                     <div className="date">
-                      <span className="day">11</span>
-                      <span className="month">FEB</span>
+                      <span className="day">
+                        {article.createdAt.toDate().getDate()}
+                      </span>
+                      <span className="month">
+                        {months[article.createdAt.toDate().getMonth()]}
+                      </span>
                     </div>
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
