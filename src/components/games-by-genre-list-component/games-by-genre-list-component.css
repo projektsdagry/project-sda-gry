@@ -1,3 +1,4 @@
+
 .cont {
   display: flex;
   justify-content: center;
@@ -26,12 +27,18 @@ table > tbody > tr > td {
   border-bottom: 1px solid black;
   padding: 10px;
 }
+table > tbody > tr:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
 
 .sorting-section {
-  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+  justify-content:center;
+  gap:50px;
+
 }
 
 

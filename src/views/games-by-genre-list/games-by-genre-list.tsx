@@ -5,14 +5,16 @@ import ListOfGames from "../../components/games-by-genre-list-component/games-by
 import { getGameListAsync, selectOrder } from "../../slices/gamelist-slice";
 
 const GamesByGenreList = () => {
-  const { gameId } = useParams();
+  const { genreId } = useParams();
  const  order = useAppSelector(selectOrder)
   const dispatch = useAppDispatch();
   const getGamesList = async (): Promise<void> => {
-    if (gameId) {
-      dispatch(getGameListAsync({gameId, order}));
+    if (genreId) {
+      dispatch(getGameListAsync({genreId, order}));
     }
   };
+
+  
 
   useEffect(() => {
     getGamesList();
@@ -20,7 +22,6 @@ const GamesByGenreList = () => {
 
   return (
     <div>
-      <h1></h1>
       <ListOfGames />
     </div>
   );
