@@ -14,10 +14,12 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "@mui/material";
 import { ColorModeContext } from "./color-mode";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+
 
 const pages = ["gamelist", "ranking", `imbored`];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -100,8 +102,18 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page} onClick={() => {
+                  handleCloseNavMenu();
+                }}>
+                <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+                component={Link}
+                to={page}
+              >
+                {page}
+              </Button>
                 </MenuItem>
               ))}
             </Menu>
