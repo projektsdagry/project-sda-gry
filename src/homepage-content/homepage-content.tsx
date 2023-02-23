@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import logo from "../assets/logo2.png";
-
+import "./homepage-content.css"
 import { HomePageLogoContainer } from "../styled/homepage/homepage-content";
 
 export const HomePage = () => {
@@ -27,17 +27,15 @@ export const HomePage = () => {
         maxWidth: "100%",
         minHeight: "100vh",
       }}
+      className="homepageMainContainer"
       xs={12}
       sm={12}
     >
       <Grid item xs={12} md={6} lg={6} overflow={"hidden"}>
         <Typography
-          align="left"
+          fontWeight={'bold'}
           variant="h2"
-          style={{
-            fontWeight: "bold",
-            marginLeft: "150px",
-          }}
+          className="homepageHeaderTextContainer"
           gutterBottom
         >
           Welcome to the ultimate destination <br /> for all things gaming!
@@ -45,14 +43,14 @@ export const HomePage = () => {
         <Typography
           align="left"
           variant="h6"
-          style={{ marginLeft: "150px", paddingTop: "40px" }}
+          className="homepageHeaderTextContainer"
           gutterBottom
         >
           Get the latest news, top rankings, and game recommendations. <br></br>{" "}
           Join us now and take your gaming to the next level!
         </Typography>
 
-        <Grid container xs={12} sx={{ flexWrap: "nowrap", marginTop: "50px" }}>
+        <Grid container xs={12} className="homepageButtonContainer">
           <Button
             href="#sectionNews"
             onClick={(event) => handleScrollToSection(event, "sectionNews")}
@@ -63,8 +61,7 @@ export const HomePage = () => {
               color: "#ffffff",
               borderRadius: "30px",
               marginTop: "40px",
-              marginRight: "20px",
-              marginLeft: "150px",
+             
             }}
           >
             Check News
