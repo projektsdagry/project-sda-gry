@@ -67,7 +67,7 @@ const ListOfGames: React.FC = () => {
   };
 
   return (
-    <div style={{minHeight: '100vh'}}>
+    <div className="selectContainer" >
       <div className="sorting-section">
         <UndoIcon
           sx={{
