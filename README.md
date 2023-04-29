@@ -5,7 +5,7 @@ Join us now and take your gaming to the next level!
 
 ### Built With
 
-- [![React][react.js]][react-url]
+- React
 
 ## Getting Started
 

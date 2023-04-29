@@ -115,7 +115,7 @@ export const Randomizer: React.FC = () => {
   };
 
   return (
-    <div style={{minHeight: "100vh"}}>
+    <div style={{ minHeight: "100vh" }}>
       {" "}
       {canClick && (
         <p className="boredP">Pick 5 games you like to get recommendations</p>
