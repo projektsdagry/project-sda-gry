@@ -21,7 +21,7 @@ const Sign = styled.p`
 export const Footer = () => {
   return (
     <Box>
-      <Sign>@bettersteam</Sign>
+      <Sign>@steemlet</Sign>
       <div>
         <IconButton>
           <LinkedInIcon />

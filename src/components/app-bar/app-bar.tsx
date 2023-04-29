@@ -2,7 +2,6 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -10,41 +9,33 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { useTheme } from "@mui/material";
-import { ColorModeContext } from "./color-mode";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
-const pages = ["gamelist", "ranking", `imbored`];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [
+  { name: "GAMELIST", url: "/gamelist" },
+  { name: "RANKING", url: "/ranking" },
+  { name: "IMBORED", url: "/imbored" },
+];
+// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
-
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const handleMenuItemClick = (url: string) => {
+    handleCloseNavMenu();
+    window.location.href = url;
   };
 
   return (
@@ -54,115 +45,102 @@ function ResponsiveAppBar() {
           <SportsEsportsIcon
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
           />
-          <Typography
-            variant="h6"
-            noWrap
+          <Button
             component={Link}
             to="/"
             sx={{
-              mr: 2,
+              mr: 5,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
+              fontSize: "20px",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            Steemlet
-          </Typography>
+            STEEMlet
+          </Button>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+            }}
+          >
+            <Button
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
-            </IconButton>
+            </Button>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
+              open={Boolean(anchorElNav)}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "left",
+                horizontal: "right",
               }}
-              open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => {
-                  handleCloseNavMenu();
-                }}>
-                <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-                component={Link}
-                to={page}
-              >
-                {page}
-              </Button>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => handleMenuItemClick(page.url)}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
+
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <SportsEsportsIcon
-            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-          />
-          <Typography
-            variant="h5"
-            noWrap
+
+          <Button
             component={Link}
             to="/"
+            href=""
+
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
+              fontSize: "20px",
               fontFamily: "monospace",
+              width: "fit-content",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            Steemlet
-          </Typography>
+
+            <SportsEsportsIcon
+              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+            />
+            STEEMlet
+          </Button>
+          
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.url}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
-                to={page}
+                to={page.url}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
-          {/* <IconButton
-            sx={{ ml: 1 }}
-            onClick={colorMode.toggleColorMode}
-            color="inherit"
-          >
-            {theme.palette.mode === "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton> */}
         </Toolbar>
       </Container>
     </AppBar>
