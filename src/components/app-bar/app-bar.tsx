@@ -11,12 +11,14 @@ import MenuItem from "@mui/material/MenuItem";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import { Link } from "react-router-dom";
 
+
 const pages = [
   { name: "GAMELIST", url: "/gamelist" },
   { name: "RANKING", url: "/ranking" },
   { name: "IMBORED", url: "/imbored" },
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -95,14 +97,17 @@ function ResponsiveAppBar() {
                   onClick={() => handleMenuItemClick(page.url)}
                 >
                   <Typography textAlign="center">{page.name}</Typography>
+
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+
           <Button
             component={Link}
             to="/"
             href=""
+
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -116,11 +121,13 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
+
             <SportsEsportsIcon
               sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
             />
             STEEMlet
           </Button>
+          
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button

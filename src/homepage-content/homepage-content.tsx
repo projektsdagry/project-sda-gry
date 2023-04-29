@@ -1,12 +1,12 @@
 import { Grid } from "@mui/material";
 import Button from "@mui/material/Button";
 import logo from "../assets/logo2.png";
-
 import {
   HeaderContainer,
   HomePageLogoContainer,
   SmallerHeaderContainer,
 } from "../styled/homepage/homepage-content";
+
 
 export const HomePage = () => {
   const handleScrollToSection = (
@@ -39,6 +39,7 @@ export const HomePage = () => {
           paddingLeft: "0px",
         },
       }}
+
     >
       <Grid item lg={6}>
         <HeaderContainer>
@@ -46,9 +47,11 @@ export const HomePage = () => {
           for all things gaming!
         </HeaderContainer>
         <SmallerHeaderContainer>
+
           Get the latest news, top rankings, and game recommendations. <br></br>{" "}
           Join us now and take your gaming to the next level!
         </SmallerHeaderContainer>
+
 
         <Grid
           container
@@ -60,6 +63,7 @@ export const HomePage = () => {
             },
           }}
         >
+
           <Button
             href="#sectionNews"
             onClick={(event) => handleScrollToSection(event, "sectionNews")}
@@ -71,6 +75,7 @@ export const HomePage = () => {
               borderRadius: "30px",
               marginTop: "40px",
               marginRight: "20px",
+
             }}
           >
             Check News
